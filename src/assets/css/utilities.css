@@ -1,0 +1,126 @@
+@import url(//db.onlinewebfonts.com/c/38d41072aa88a50711d4d50dd0d50f6b?family=Neue+Machina);
+
+*{
+    font-family: Neue Machina;
+}
+.col-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.row-flex {
+    display: flex;
+    flex-direction: row;
+}
+.grid-center {
+    display:grid;
+    place-items: center;
+}
+
+
+
+.gradient-btn {
+    background: linear-gradient(183.54deg, #F8C616 -31.44%, #880492 16.39%, #FF4510 107.97%);
+        font-family: "Rubik";
+        font-size: 16px;
+        font-weight: 500;
+}
+
+.btn {
+    width: 200px;
+    height: 60px;
+}
+.btn-2 {
+    width: 173px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+}
+.btn-3 {
+    width: 250px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+}
+.rubik {
+    font-family: Rubik;
+    font-style: normal;
+}
+.heading-sm {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 27px;
+}
+.sub-head-sm {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+}
+.category-name {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+
+.store-name {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+}
+.store-location {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+}
+.store-head {
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+
+
+    color: #F8C616;
+
+}
+.subtitle {
+    color: #7A7978;
+    font-size: 12px;
+}
+
+
+/*payloan project*/
+.text-primary {
+    color: #6C27FF;
+}
+.bg-primary {
+    background-color: #6C27FF;
+}
+.heading {
+    font-weight: 800;
+    line-height: 90px;
+    color: #030112;
+}
+.subheading {
+    font-family: 'Neue Machina';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 170%;
+    /* or 41px */
+
+
+    color: #0A1045;
+
+}
+
