@@ -82,18 +82,59 @@
     transition: all .7s linear;
   }
 
+  @media screen and (max-width: 1024px) {
+    .hero-details {
+      width: 90%;
+    }
+    .hero-img {
+      display: none;
+    }
+    .head {
+      font-size: 40px;
+      line-height: 54px;
+    }
+    .line {
+      display: none;
+    }
+    .subheading {
+      font-size: 18px;
+    }
+  }
 
-  @media screen and (max-width: 425px){
+  @media screen and (max-width:768px) {
     input[type="text"] {
       height: 50px;
+    }
+    .line {
+      align-self: flex-end;
+      width: 100px;
+    }
+  }
+
+
+  @media screen and (max-width: 425px){
+
+    input[type="text"] {
+      height: 50px;
+      width: 335px;
     }
     .head {
       line-height: 60px;
     }
     .hero {
       max-height: 800px;
+      align-items: center;
+    }
+    .line {
+      display: initial;
+      align-self: center !important;
     }
     
+  }
+  @media screen and (max-width: 390px) {
+    input[type="text"] {
+      width: 290px !important;
+    }
   }
 
   @media screen and (min-width: 1440px) {
