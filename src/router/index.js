@@ -1,11 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Waiting from '../views/Waiting.vue'
+import About from '../views/About-Us.vue'
+
 
 const routes = [
   {
-    path: '/',
+    path:'/',
+    redirect: '/waiting',
+  },
+  {
+    path: '/waiting',
     name: 'Waiting',
     component: Waiting
+  },
+  {
+    path: '/about-us',
+    name: 'About',
+    component: About
   }
 ]
 
