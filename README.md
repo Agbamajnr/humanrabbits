@@ -1,4 +1,4 @@
-# payloan
+# humanrabbit
 
 ## Project setup
 ```

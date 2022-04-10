@@ -3,9 +3,10 @@
     src: url('../fonts/NeueMachina-Regular.otf') format('opentype');
 }
 
-*{
-    font-family: Neue Machina;
-}
+@import url('https://fonts.googleapis.com/css2?family=Oxanium');
+
+
+
 .col-flex {
     display: flex;
     flex-direction: column;
@@ -127,3 +128,8 @@
 
 }
 
+
+/*human Rabbits*/
+.bg-green-rabbit {
+    background: #08C052;
+}
