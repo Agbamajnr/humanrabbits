@@ -21,7 +21,7 @@ import axios from 'axios'
 
 export default {
     setup() {
-        const url = 'https://humanrabbit.onrender.com/api'
+        const url = 'https://humanrabbit.herokuapp.com/api'
         const data = reactive({
             email: '',
             pin: ''
