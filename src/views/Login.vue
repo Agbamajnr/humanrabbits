@@ -4,10 +4,10 @@
     <div class="form flex flex-col items-start gap-y-10 text-white p-7 lg:bordered border-none">
         <p class="text-xl lg:text-2xl font-semibold ">Sign-in</p>
         <p class="text-sm lg:text-lg text-left">Sign-in by keying in your email address and 4 digit pin</p>
-        <input type="text" class="w-full" placeholder="Enter email address">
-        <input type="text" class="w-full" placeholder="Enter 4 digit pin">
+        <input type="text" class="w-full" placeholder="Enter email address" v-model="data.email" required>
+        <input type="text" class="w-full" placeholder="Enter 4 digit pin" v-model="data.pin" maxlength="8" minlength="4" required>
         <p class="w-full text-right"><a href="Terms and conditions" class="text-green-400 no-underline">Forgot password?</a></p>
-        <buton class="next-btn bg-green-rabbit w-full grid-center mt-5"><p class="font-bold text-lg">Next</p></buton>
+        <button class="next-btn bg-green-rabbit w-full grid-center mt-5" @click="signInUser"><p class="font-bold text-lg" type="submit" >Next</p></button>
         <p class="text-center flex  self-center">Don’t have an account?<a href="/login" class="text-green-400 underline ml-1">Sign up</a></p>
     </div>
   </div>
@@ -17,11 +17,28 @@
 
 <script>
 import {ref, reactive} from 'vue'
+import axios from 'axios'
+
 export default {
     setup() {
-        
+        const url = 'https://humanrabbit.onrender.com/api'
+        const data = reactive({
+            email: '',
+            pin: ''
+        })
+
+        const signInUser = async () => {
+            console.log(data);
+
+            const logUser = await axios.post(url + '/auth/login', data, { withCredentials: true })
+            console.log(logUser);
+        }
+
+        return {data, signInUser}
     }
 }
+
+
 </script>
 
 <style scoped>

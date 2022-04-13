@@ -4,6 +4,7 @@ import Dashboard from '../views/Dashboard.vue'
 import Login from '../views/Login.vue'
 import Retrievepin from '../views/Forgot-Pin.vue'
 import Register from '../views/Register.vue'
+import Wallet from '../views/Wallet.vue'
 
 
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard
+  },
+  {
+    path: '/wallet',
+    name: 'Wallet',
+    component: Wallet
   }
 ]
 
