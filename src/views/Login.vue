@@ -31,7 +31,6 @@ export default {
             console.log(data);
 
             const logUser = await axios.post(url + '/auth/login', data, { withCredentials: true })
-            console.log(logUser);
         }
 
         return {data, signInUser}
