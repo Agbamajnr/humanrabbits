@@ -15,14 +15,14 @@
             <a href="#" class="lg:block hidden"><button disabled class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">200trx</p></button></a>
         </div>
 
-        <div class="wallet-info gap-x-7 w-full h-full flex flex-row mt-12">
-            <div class="actions w-2/6 flex flex-col items-center gap-y-4 p-8">
+        <div class="wallet-info gap-x-7 gap-y-7 lg:gap-y-0 w-full h-full flex flex-col lg:flex-row mt-12">
+            <div class="actions w-full lg:w-2/6 flex flex-col items-center gap-y-4 p-8">
                 <p>Wallet balance</p>
                 <p class="text-2xl font-bold text-white">200 TRX</p>
                 <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5"><p class="font-bold text-lg text-white">Deposit</p></button>
                 <button class="withdraw-btn w-full grid-center mt-5"><p class="font-bold text-lg text-white">Withdraw</p></button>
             </div>
-            <div class="transactions w-4/6 h-full grid-center p-8">
+            <div class="transactions w-full lg:w-4/6 h-full grid-center p-8">
                 <p class="text-lg text-white w-full flex self-start">Transactions</p>
                 <div class="h-full w-full flex flex-col items-center">
                     <img src="../assets/img/transaction.svg" class="empty w-28 h-28" alt="">    
@@ -92,7 +92,8 @@ export default {
         border: 1px solid #08C052;
     }
     .transactions {
-        min-height: 878px;
+        max-height: 861px;
+        height: 861px;
         border: 1px solid rgba(229, 229, 229, 0.56);
     }
     .empty {
@@ -102,6 +103,13 @@ export default {
     @media screen and (min-width: 1500px) {
         .body {
             width: 60%;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .transactions {
+            max-height: 400px !important;
+            height: 400px !important;
         }
     }
 </style>

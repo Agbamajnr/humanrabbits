@@ -2,18 +2,25 @@
 <div class="form flex flex-col items-start gap-y-10 text-white p-7 lg:bordered border-none">
         <p class="text-xl lg:text-2xl font-semibold ">Signup</p>
         <p class="text-sm lg:text-lg text-left">Complete the signup process by creating a username and adding refferal code</p>
-        <input type="text" class="w-full" placeholder="Create username" v-model="email">
-        <input type="text" class="w-full" placeholder="Refferal code (optional)" v-model="password">
+        <input type="text" class="w-full" placeholder="Create username" v-model="secondData.username">
+        <input type="text" class="w-full" placeholder="Refferal code (optional)">
         <p>By clicking “Next” you agree to <a href="Terms and conditions" class="text-green-400 underline">Terms and conditions</a></p>
-        <button class="next-btn bg-green-rabbit w-full grid-center mt-5"><p class="font-bold text-lg" @click="$emit('last-step')">Next</p></button>
+        <button class="next-btn bg-green-rabbit w-full grid-center mt-5"  @click="$emit('last-step', secondData)"><p class="font-bold text-lg">Next</p></button>
         <p class="text-center flex  self-center">Already have an account?<a href="/login" class="text-green-400 underline ml-1">Sign in</a></p>
     </div>
   
 </template>
 
 <script>
+import {ref, reactive} from 'vue'
 export default {
+    setup() {
+        const secondData = reactive({
+            username: '',
+        })
 
+        return {secondData}
+    }
 }
 </script>
 

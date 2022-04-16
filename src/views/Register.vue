@@ -1,7 +1,7 @@
 <template>
   <div class="main grid-center w-full py-24 gap-y-5 min-h-screen min-w-screen" ref="main">
     <img src="../assets/img/logo.svg" class="w-full h-10 lg:h-16 mb-8 lg:mb-0" alt="">
-    <component v-bind:is="component" @next-step="component = 'second-step'" @last-step="component = 'last-step'"></component>
+    <component :is="component" @next-step="getFirstData" @last-step="getSecondData"></component>
   </div>
 </template>
 
@@ -13,21 +13,63 @@ import SecondStep from '../components/SecondRegister.vue'
 import LastStep from '../components/EmailVerification.vue'
 
 
-import {ref, reactive, onBeforeMount} from 'vue'
+import {ref, reactive, onBeforeMount, provide, computed} from 'vue'
 import {useRoute, useRouter} from 'vue-router'
+import axios from 'axios'
 
 export default {
     components: {
         'first-step':FirstStep,
         'second-step':SecondStep,
-        'last-step':LastStep
+        'last-step': LastStep
 
     },
     setup () {
         const component = ref('first-step')
-        console.log(component);
 
-        return {component}
+        const url = 'https://humanrabbit.onrender.com/api'
+
+        const data = reactive({
+            email: '',
+            pin: '',
+            username: '',
+        })
+
+        const VerifyEmail = ref('')
+
+        const getFirstData = async (firstData) => {
+            data.email = firstData.email,
+            data.pin =  firstData.pin
+
+            component.value = 'second-step';
+        }
+
+        const userDetails = ref()
+
+        const getSecondData = async (secondData) => {
+            data.username = secondData.username;
+
+            const createUser = await axios.post(url + '/auth/register', data)
+
+            userDetails.value = createUser.data;
+            
+            component.value = 'last-step';
+        }
+
+        
+        const userRegisterDetails= computed(() => {
+            return userDetails.value;
+        })
+
+        console.log(userRegisterDetails);
+        
+        provide("registeringUser", userRegisterDetails)
+
+
+
+
+
+        return {component, getFirstData, getSecondData}
     }
 
 }

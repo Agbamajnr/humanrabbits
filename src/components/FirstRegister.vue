@@ -4,17 +4,25 @@
   <div class="form flex flex-col items-start gap-y-7 text-white p-7 lg:bordered border-none">
         <p class="text-xl lg:text-2xl font-semibold ">Signup</p>
         <p class="text-sm lg:text-lg text-left">Signup by keying in your email address and creating a pin</p>
-        <input type="text" class="w-full" placeholder="Enter email address">
-        <input type="text" class="w-full" placeholder="Create pin">
-        <input type="text" class="w-full" placeholder="Re-enter pin">
+        <input type="email" class="w-full" placeholder="Enter email address" v-model="firstData.email">
+        <input type="text" class="w-full" placeholder="Create pin" v-model="firstData.pin" maxlength="4" minlength="4">
+        <input type="text" class="w-full" placeholder="Re-enter pin" maxlength="4" minlength="4">
         <p>By clicking “Next” you agree to <a href="Terms and conditions" class="text-green-400 underline">Terms and conditions</a></p>
-        <button class="next-btn bg-green-rabbit w-full grid-center mt-5"><p class="font-bold text-lg" @click="$emit('next-step')">Next</p></button>
+        <button class="next-btn bg-green-rabbit w-full grid-center mt-5" @click="$emit('next-step', firstData)"><p class="font-bold text-lg">Next</p></button>
         <p class="text-center flex  self-center">Already have an account?<a href="/login" class="text-green-400 underline ml-1">Sign in</a></p>
     </div>
 </template>
 <script>
+import {ref, reactive} from 'vue'
 export default {
+    setup() {
+        const firstData = reactive({
+            email: '',
+            pin: '',
+        })
 
+        return {firstData}
+    }
 }
 </script>
 
