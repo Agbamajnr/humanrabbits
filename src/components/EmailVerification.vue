@@ -26,8 +26,10 @@ export default {
 
       let details = inject("registeringUser");
 
+      console.log(details);
+
       const data = reactive({
-        id: details._id
+        id: details.value._id
       })
 
       const validatedInfo = ref('')
@@ -45,11 +47,13 @@ export default {
 
       const otpCode = ref()
 
-      onBeforeMount(async () => {
+      const verifyUser = ( async() => {
         const getOtpCode = await axios.post(url + '/auth/verifyUser', data);
-
+        console.log(getOtpCode);
         otpCode.value = getOtpCode.data.authCode;
       })
+
+      verifyUser();
 
       const validateAuthCode = () => {
         if (otpInput.length === 6 && otpCode.value.length ===6) {
