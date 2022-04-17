@@ -7,12 +7,12 @@
             </div>
             <button class="mobile-nav lg:hidden block" @click="handleNav"><img src="../assets/img/nav.svg" alt=""></button>
             <div class="nav gap-x-6 lg:flex flex-row hidden">
-                <a href="#"><p>Games</p></a>
-                <a href="#"><p>Wallet</p></a>
+                <a href="/dashboard" class="active"><p>Games</p></a>
+                <a href="/wallet"><p>Wallet</p></a>
                 <a href="#"><p>Bonus</p></a>
                 <a href="#"><p>Referrals</p></a>
             </div>
-            <a href="#" class="lg:block hidden"><button disabled class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">$20</p></button></a>
+            <a href="#" class="lg:block hidden"><button disabled class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">{{$store.state.user[0].wallet}} trx</p></button></a>
         </div>
 
         <div class="hero mt-16 lg:mt-12  flex flex-col items-center justify-center lg:gap-y-6 text-white">
@@ -178,5 +178,12 @@ export default {
         height: 50px;
         bottom: 0;
         right: -3px;
+    }
+
+    .active {
+        border-bottom: 1px solid #08C052;
+        border-bottom-width: 3px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
     }
 </style>

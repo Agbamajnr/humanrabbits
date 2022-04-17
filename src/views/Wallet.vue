@@ -10,18 +10,18 @@
             </div>
             <button class="mobile-nav lg:hidden block" @click="handleNav"><img src="../assets/img/nav.svg" alt=""></button>
             <div class="nav gap-x-6 lg:flex flex-row hidden">
-                <a href="#"><p>Games</p></a>
-                <a href="#"><p>Wallet</p></a>
+                <a href="/dashboard"><p>Games</p></a>
+                <a href="/wallet" class="active"><p>Wallet</p></a>
                 <a href="#"><p>Bonus</p></a>
                 <a href="#"><p>Referrals</p></a>
             </div>
-            <a href="#" class="lg:block hidden"><button disabled class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">200trx</p></button></a>
+            <a href="#" class="lg:block hidden"><button disabled class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">{{$store.state.user[0].wallet}} trx</p></button></a>
         </div>
 
         <div class="wallet-info gap-x-7 gap-y-7 lg:gap-y-0 w-full h-full flex flex-col lg:flex-row mt-12">
             <div class="actions w-full lg:w-2/6 flex flex-col items-center gap-y-4 p-8">
                 <p>Wallet balance</p>
-                <p class="text-2xl font-bold text-white">200 TRX</p>
+                <p class="text-2xl font-bold text-white">{{$store.state.user[0].wallet}} TRX</p>
                 <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5" @click="depositFunds"><p class="font-bold text-lg text-white">Deposit</p></button>
                 <button class="withdraw-btn w-full grid-center mt-5"><p class="font-bold text-lg text-white">Withdraw</p></button>
             </div>
@@ -120,6 +120,13 @@ export default {
     .deposit-modal {
         transition: all .7s linear;
         height: 100% !important;
+    }
+
+    .active {
+        border-bottom: 1px solid #08C052;
+        border-bottom-width: 3px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
     }
 
     @media screen and (min-width: 1500px) {
