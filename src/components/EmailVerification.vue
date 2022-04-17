@@ -8,20 +8,25 @@
             <input type="text" v-model="val3" @input="next" />
             <input type="text" v-model="val4" @input="next" />
             <input type="text" v-model="val5" @input="next" />
-            <input type="text" v-model="val6" @input="next" />
+
         </div>
-        <button class="next-btn bg-green-rabbit w-full grid-center mt-5" @click="validateAuthCode"><p class="font-bold text-lg">Verify Code</p></button>
+        <p class="text-sm lg:text-lg text-left">{{validatedInfo}}</p>
+        <button class="next-btn bg-green-rabbit w-full grid-center mt-5" @click="validateAuthCode"><p v-if="userVerified === false" class="font-bold text-lg">Verify Code</p> <p v-else class="font-bold text-lg row-flex gap-x-5">Verified</p> </button>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 import { inject, ref, reactive, onBeforeMount } from 'vue'
+import {useRouter} from 'vue-router'
 
 export default {
   setup() {
       const url = 'https://humanrabbit.onrender.com/api';
 
+      const userVerified = ref(false); //manages user verification state
+
+      const router = useRouter();
       
 
       let details = inject("registeringUser");
@@ -39,40 +44,45 @@ export default {
       const val3 = ref()
       const val4 = ref()
       const val5 = ref()
-      const val6 = ref()
 
-      const otpInput = [val1.value, val2.value, val3.value, val4.value, val5.value, val6.value].join()
-
-      console.log(otpInput);
 
       const otpCode = ref()
 
       const verifyUser = ( async() => {
         const getOtpCode = await axios.post(url + '/auth/verifyUser', data);
-        console.log(getOtpCode);
         otpCode.value = getOtpCode.data.authCode;
       })
 
       verifyUser();
 
-      const validateAuthCode = () => {
-        if (otpInput.length === 6 && otpCode.value.length ===6) {
-          if (otpInput == otpCode.value) {
+      const validateAuthCode =async () => {
+        const otpInput = [val1.value, val2.value, val3.value, val4.value, val5.value].join('');
+        if (otpInput.length === 5 && otpCode.value.length === 5) {
+          if (otpInput === otpCode.value) {
             validatedInfo.value = 'User Verified Succesfully';
+            userVerified.value = true;
+
+            setTimeout(() => {
+              router.push('/login')
+            }, 2000);
           } else {
             validatedInfo.value = 'Incorrect Otp Code';
           } 
         } else validatedInfo.value = 'OTP Input not Complete';
+
+        if (userVerified.value === true) {
+          const makeUserVerified = await axios.put(url + `/auth/changeUserVerificationState/${details.value._id}`);
+        }
       }
 
 
 
-      const next = () => {
+      const next = (e) => {
         e.target?.nextSibling?.focus();
       }
 
 
-      return {details, next, val1, val2, val3, val4, val5, val6, validateAuthCode, validatedInfo }
+      return {details, next, val1, val2, val3, val4, val5, validateAuthCode, validatedInfo, userVerified }
     }
 };
 </script>

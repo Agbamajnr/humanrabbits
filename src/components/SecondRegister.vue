@@ -5,7 +5,10 @@
         <input type="text" class="w-full" placeholder="Create username" v-model="secondData.username">
         <input type="text" class="w-full" placeholder="Refferal code (optional)">
         <p>By clicking “Next” you agree to <a href="Terms and conditions" class="text-green-400 underline">Terms and conditions</a></p>
-        <button class="next-btn bg-green-rabbit w-full grid-center mt-5"  @click="$emit('last-step', secondData)"><p class="font-bold text-lg">Next</p></button>
+        <button class="next-btn bg-green-rabbit w-full grid-center mt-5"  @click="$emit('last-step', secondData), processing = true">
+            <p class="font-bold text-lg" v-if="processing == false">Next</p>
+            <img src="../assets/img/rolling.gif" v-else class="w-6 h-6" alt="">
+        </button>
         <p class="text-center flex  self-center">Already have an account?<a href="/login" class="text-green-400 underline ml-1">Sign in</a></p>
     </div>
   
@@ -19,7 +22,10 @@ export default {
             username: '',
         })
 
-        return {secondData}
+        const processing = ref(false)
+        console.log(processing);
+
+        return {secondData, processing}
     }
 }
 </script>

@@ -7,8 +7,13 @@
         <input type="text" class="w-full" placeholder="Enter email address" v-model="data.email" required>
         <input type="number" class="w-full" placeholder="Enter 4 digit pin" v-model="data.pin" maxlength="8" minlength="4" required>
         <p class="w-full text-right"><a href="Terms and conditions" class="text-green-400 no-underline">Forgot password?</a></p>
-        <button class="next-btn bg-green-rabbit w-full grid-center mt-5" @click="signInUser"><p class="font-bold text-lg" type="submit" >Next</p></button>
-        <p class="text-center flex  self-center">Don’t have an account?<a href="/login" class="text-green-400 underline ml-1">Sign up</a></p>
+        <p class="w-full text-left">{{loginInformation}}</p>
+        <button class="next-btn bg-green-rabbit w-full grid-center mt-5" @click="signInUser">
+            <p class="font-bold text-lg" v-if="processing === false" type="submit" >Next</p>
+            <img src="../assets/img/rolling.gif" v-if="processing === true"  class="w-6 h-6" alt="">
+            <p class="font-bold text-lg" v-if="statusInfo === true" type="submit" >Logged In</p>
+        </button>
+        <p class="text-center flex  self-center">Don’t have an account?<a href="/register" class="text-green-400 underline ml-1">Sign up</a></p>
     </div>
   </div>
 </template>
@@ -17,6 +22,7 @@
 
 <script>
 import {ref, reactive} from 'vue'
+import {useRouter} from 'vue-router'
 import axios from 'axios'
 
 export default {
@@ -27,11 +33,30 @@ export default {
             pin: ''
         })
 
+        const router = useRouter();
+
+        const processing = ref(false)
+        const loginInformation = ref('');
+        const statusInfo = ref(false)
+
         const signInUser = async () => {
+            processing.value = true;
             const logUser = await axios.post(url + '/auth/login', data, { withCredentials: true })
+            processing.value = false;
+            loginInformation.value = logUser.data.message;
+            console.log(loginInformation.value);
+
+            if (logUser.data.message === 'Login Successful') {
+                processing.value = 'nothing'
+                statusInfo.value = true
+
+                setTimeout(() => {
+                    router.push('/dashboard')
+                }, 2000);
+            } else statusInfo.value = false;
         }
 
-        return {data, signInUser}
+        return {data, signInUser, loginInformation, statusInfo, processing}
     }
 }
 
