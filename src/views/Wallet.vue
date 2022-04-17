@@ -1,6 +1,9 @@
 <template>
-  <div class="main flex  justify-center w-full min-h-screen" ref="main">
-      <div class="body w-4/5 h-full py-5 flex flex-col" v-if="active_nav === false">
+  <div class="main flex justify-center w-full min-h-full " ref="main">
+      <div :class="{'deposit-modal h-full absolute w-full grid-center': depositModal === true, 'hidden': depositModal === false,}">
+        <Deposit @closeModal="depositModal = false" class="m-auto my-auto bg-white"/>
+    </div>
+      <div class="body w-4/5  h-full py-5 flex flex-col" v-if="active_nav === false">
         <div class="header flex flex-row items-center w-full justify-between text-white">
             <div class="logo">
                 <img src="../assets/img/logo.svg" alt="">
@@ -19,7 +22,7 @@
             <div class="actions w-full lg:w-2/6 flex flex-col items-center gap-y-4 p-8">
                 <p>Wallet balance</p>
                 <p class="text-2xl font-bold text-white">200 TRX</p>
-                <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5"><p class="font-bold text-lg text-white">Deposit</p></button>
+                <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5" @click="depositFunds"><p class="font-bold text-lg text-white">Deposit</p></button>
                 <button class="withdraw-btn w-full grid-center mt-5"><p class="font-bold text-lg text-white">Withdraw</p></button>
             </div>
             <div class="transactions w-full lg:w-4/6 h-full grid-center p-8">
@@ -48,16 +51,22 @@
                 <a href="#" class="mt-8"><button disabled class="grid-center bg-green-rabbit w-36 h-12 text-white"><p class="text-sm">$20</p></button></a>
             </div>
         </div>
+
       </div>
   </div>
 </template>
 
 <script>
 import {ref, reactive} from 'vue'
+import Deposit from '../components/Deposit.vue'
 export default {
+    components: {
+        Deposit
+    },
     setup() {
         const main = ref()
         const active_nav = ref(false)
+        const depositModal = ref(false)
 
         const handleNav = () => {
             active_nav.value = !active_nav.value;
@@ -69,8 +78,12 @@ export default {
             }
         }
 
+        const depositFunds = () => {
+        depositModal.value = !depositModal.value;
+      }
 
-        return {main, active_nav, handleNav}
+
+        return {main, active_nav, handleNav, depositFunds, depositModal}
     }
 }
 </script>
@@ -78,7 +91,12 @@ export default {
 <style scoped>
     .main {
         background: #090B13;
+        opacity: 1;
+        height: 100% !important;
         font-family: Neue Machina;
+    }
+    .body {
+        background: #090B13;
     }
     .actions {
         height: 384px;
@@ -98,6 +116,10 @@ export default {
     }
     .empty {
         border: none !important;
+    }
+    .deposit-modal {
+        transition: all .7s linear;
+        height: 100% !important;
     }
 
     @media screen and (min-width: 1500px) {
