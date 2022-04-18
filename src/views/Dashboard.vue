@@ -1,6 +1,6 @@
 <template>
   <div class="main flex  justify-center w-full min-h-screen" ref="main">
-      <div class="body w-4/5 h-full py-5 flex flex-col" v-if="active_nav === false">
+      <div class="body w-4/5 h-full py-5 flex flex-col" v-if="active_nav === false && $store.state.user[0].wallet">
         <div class="header flex flex-row items-center w-full justify-between text-white">
             <div class="logo">
                 <img src="../assets/img/logo.svg" alt="">
@@ -134,6 +134,7 @@
 <script>
 import {ref, reactive} from 'vue'
 export default {
+    
     setup() {
         const main = ref()
         const active_nav = ref(false)

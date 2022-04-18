@@ -5,7 +5,7 @@
               <p class="text-xl font-bold w-full text-left">Deposit Tron(TRX)</p>
               <svg @click="$emit('closeModal')" class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </div>
-          <qrcode-vue :value="$store.state.user[0].userDetails.trxAddress" level="H" size="230"></qrcode-vue>
+          <qrcode-vue :value="$store.state.user[0].userDetails.trxAddress" level="H" :size="230"></qrcode-vue>
           <div class="address row-flex relative w-full h-full items-center">
               <p class="text-sm text-left pl-2">{{$store.state.user[0].userDetails.trxAddress}}</p>
               <button class="copy absolute right-1 bottom-1 text-white text-center" @click="copyAddress($store.state.user[0].userDetails.trxAddress)"><p v-if="addressCopied === false">Copy</p><p v-if="addressCopied === true">Copied</p></button>

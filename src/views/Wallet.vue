@@ -2,7 +2,10 @@
   <div class="main flex justify-center w-full min-h-full " ref="main">
       <div :class="{'deposit-modal h-full absolute w-full grid-center': depositModal === true, 'hidden': depositModal === false,}">
         <Deposit @closeModal="depositModal = false" class="m-auto my-auto bg-white"/>
-    </div>
+      </div>
+      <div :class="{'withdraw-modal h-full absolute w-full grid-center': withdrawModal === true, 'hidden': withdrawModal === false,}">
+        <Withdraw @closeModal="withdrawModal = false" class="m-auto my-auto bg-white"/>
+      </div>
       <div class="body w-4/5  h-full py-5 flex flex-col" v-if="active_nav === false">
         <div class="header flex flex-row items-center w-full justify-between text-white">
             <div class="logo">
@@ -23,7 +26,7 @@
                 <p>Wallet balance</p>
                 <p class="text-2xl font-bold text-white">{{$store.state.user[0].wallet}} TRX</p>
                 <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5" @click="depositFunds"><p class="font-bold text-lg text-white">Deposit</p></button>
-                <button class="withdraw-btn w-full grid-center mt-5"><p class="font-bold text-lg text-white">Withdraw</p></button>
+                <button class="withdraw-btn w-full grid-center mt-5" @click="withdrawFunds"><p class="font-bold text-lg text-white">Withdraw</p></button>
             </div>
             <div class="transactions w-full lg:w-4/6 h-full grid-center p-8">
                 <p class="text-lg text-white w-full flex self-start">Transactions</p>
@@ -59,14 +62,17 @@
 <script>
 import {ref, reactive} from 'vue'
 import Deposit from '../components/Deposit.vue'
+import Withdraw from '../components/Withdraw.vue'
 export default {
     components: {
-        Deposit
+        Deposit,
+        Withdraw
     },
     setup() {
         const main = ref()
         const active_nav = ref(false)
         const depositModal = ref(false)
+        const withdrawModal = ref(false)
 
         const handleNav = () => {
             active_nav.value = !active_nav.value;
@@ -79,11 +85,14 @@ export default {
         }
 
         const depositFunds = () => {
-        depositModal.value = !depositModal.value;
-      }
+            depositModal.value = !depositModal.value;
+        }
+        const withdrawFunds = () => {
+            withdrawModal.value = !withdrawModal.value;
+        }
 
 
-        return {main, active_nav, handleNav, depositFunds, depositModal}
+        return {main, active_nav, handleNav, depositFunds, depositModal, withdrawFunds, withdrawModal}
     }
 }
 </script>
