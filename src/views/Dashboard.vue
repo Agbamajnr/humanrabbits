@@ -120,8 +120,8 @@
                 <button class="text-xl font-bold" @click="handleNav">X</button>
             </div>
             <div class="mt-16 gap-y-8 flex flex-col text-xl">
-                <a href="#"><p>Games</p></a>
-                <a href="#"><p>Wallet</p></a>
+                <a href="/dashboard"><p>Games</p></a>
+                <a href="/wallet"><p>Wallet</p></a>
                 <a href="#"><p>Bonus</p></a>
                 <a href="#"><p>Referrals</p></a>
                 <a href="#" class="mt-8"><button disabled class="grid-center bg-green-rabbit w-36 h-12 text-white"><p class="text-sm">$20</p></button></a>

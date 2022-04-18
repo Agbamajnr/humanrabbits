@@ -12,7 +12,7 @@
                 <a href="#"><p>Staking</p></a>
                 <a href="#"><p>Whitepaper</p></a>
             </div>
-            <a href="/login" class="lg:block hidden"><button class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">Play Now</p></button></a>
+            <a :href="conditionedRoute" @click="changeRoute($store.state.authenticated)" class="lg:block hidden"><button class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">Play Now</p></button></a>
         </div>
 
         <div class="hero mt-28  flex flex-col items-center justify-center gap-y-6 text-white">
@@ -122,9 +122,9 @@
                 <button class="text-xl font-bold" @click="handleNav">X</button>
             </div>
             <div class="mt-16 gap-y-8 flex flex-col text-xl">
-                <a href="#"><p>Home</p></a>
-                <a href="#"><p>Gameplay</p></a>
-                <a href="#"><p>Staking</p></a>
+                <a href="/"><p>Home</p></a>
+                <a href="/dashboard"><p>Gameplay</p></a>
+                <a href="/dashboard"><p>Staking</p></a>
                 <a href="#"><p>Whitepaper</p></a>
                 <a href="#" class="mt-8"><button disabled class="grid-center bg-green-rabbit w-40 h-16 text-white"><p class="text-sm font-bold">Play Now</p></button></a>
             </div>
@@ -142,6 +142,8 @@ export default {
         const main = ref()
         const active_nav = ref(false)
 
+        const conditionedRoute = ref('')
+
         const handleNav = () => {
             active_nav.value = !active_nav.value;
             if(active_nav.value == true) {
@@ -152,8 +154,15 @@ export default {
             }
         }
 
+        const changeRoute = (auth) => {
+            if (auth === true) {
+                conditionedRoute.value = '/dashboard'
+                
+            } else conditionedRoute.value = '/login'
+        }
 
-        return {main, active_nav, handleNav}
+
+        return {main, active_nav, handleNav, conditionedRoute, changeRoute}
     }
 }
 </script>
