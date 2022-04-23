@@ -18,13 +18,13 @@
                 <a href="#"><p>Bonus</p></a>
                 <a href="#"><p>Referrals</p></a>
             </div>
-            <a href="#" class="lg:block hidden"><button disabled class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">{{$store.state.user[0].wallet}} trx</p></button></a>
+            <a href="#" class="lg:block hidden"><button disabled class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">{{Math.floor($store.state.user[0].wallet)}} trx</p></button></a>
         </div>
 
         <div class="wallet-info gap-x-7 gap-y-7 lg:gap-y-0 w-full h-full flex flex-col lg:flex-row mt-12">
             <div class="actions w-full lg:w-2/6 flex flex-col items-center gap-y-4 p-8">
                 <p>Wallet balance</p>
-                <p class="text-2xl font-bold text-white">{{$store.state.user[0].wallet}} TRX</p>
+                <p class="text-2xl font-bold text-white">{{Math.floor($store.state.user[0].wallet)}} TRX</p>
                 <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5" @click="depositFunds"><p class="font-bold text-lg text-white">Deposit</p></button>
                 <button class="withdraw-btn w-full grid-center mt-5" @click="withdrawFunds"><p class="font-bold text-lg text-white">Withdraw</p></button>
             </div>

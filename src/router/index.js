@@ -5,6 +5,8 @@ import Login from '../views/Login.vue'
 import Retrievepin from '../views/Forgot-Pin.vue'
 import Register from '../views/Register.vue'
 import Wallet from '../views/Wallet.vue'
+import Game1 from '../views/FirstGame.vue'
+
 
 
 
@@ -39,6 +41,11 @@ const routes = [
     path: '/wallet',
     name: 'Wallet',
     component: Wallet
+  },
+  {
+    path: '/games/rabbit1',
+    name: 'Rabbit',
+    component: Game1
   }
 ]
 

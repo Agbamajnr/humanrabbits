@@ -30,7 +30,7 @@ export default {
         const url = 'https://humanrabbit.onrender.com/api'
 
         const data = reactive({
-            email: '',
+            email: ''.toLowerCase(),
             pin: '',
             username: '',
         })

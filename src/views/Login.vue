@@ -52,7 +52,7 @@ export default {
 
                 setTimeout(() => {
                     router.push('/dashboard')
-                }, 2000);
+                }, 3000);
             } else statusInfo.value = false;
         }
 

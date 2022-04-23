@@ -12,7 +12,7 @@
                 <a href="#"><p>Bonus</p></a>
                 <a href="#"><p>Referrals</p></a>
             </div>
-            <a href="#" class="lg:block hidden"><button disabled class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">{{$store.state.user[0].wallet}} trx</p></button></a>
+            <a href="#" class="lg:block hidden"><button disabled class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">{{Math.floor($store.state.user[0].wallet)}} trx</p></button></a>
         </div>
 
         <div class="hero mt-16 lg:mt-12  flex flex-col items-center justify-center lg:gap-y-6 text-white">
@@ -39,7 +39,7 @@
                         <p>Return back</p>
                     </div>
                 </div>
-                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Available Now</p></button>
+                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><a href="/games/rabbit1"><p>Available Now</p></a></button>
                 <img src="../assets/img/designs/green.svg" class="design-star absolute" alt="">
             </div>
             <div class="card pl-6 pt-5 pb-5 pr-6 lg:pr-2 bg-green-rabbit col-flex items-start gap-y-8 relative">
@@ -61,7 +61,7 @@
                         <p>Return back</p>
                     </div>
                 </div>
-                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Available Now</p></button>
+                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><a href="/games/rabbit1"><p>Available Now</p></a></button>
                 <img src="../assets/img/designs/yellow.svg" class="design-star absolute" alt="">
             </div>
             <div class="card pl-6 pt-5 pb-5 pr-6 lg:pr-2 bg-purple-500 col-flex items-start gap-y-8 relative">
@@ -83,7 +83,7 @@
                         <p>Return back</p>
                     </div>
                 </div>
-                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Available Now</p></button>
+                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><a href="/games/rabbit1"><p>Available Now</p></a></button>
                 <img src="../assets/img/designs/white.svg" class="design-star absolute" alt="">
             </div>
 
@@ -106,7 +106,7 @@
                         <p>Return back</p>
                     </div>
                 </div>
-                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Available Now</p></button>
+                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><a href="/games/rabbit1"><p>Available Now</p></a></button>
                 <img src="../assets/img/designs/white.svg" class="design-star absolute" alt="">
             </div>
         </div>
