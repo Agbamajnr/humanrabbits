@@ -6,6 +6,7 @@ import Retrievepin from '../views/Forgot-Pin.vue'
 import Register from '../views/Register.vue'
 import Wallet from '../views/Wallet.vue'
 import Game1 from '../views/FirstGame.vue'
+import Profile from '../views/Profile.vue'
 
 
 
@@ -31,6 +32,11 @@ const routes = [
     path: '/forgot-pin',
     name: 'Forgot-Pin',
     component: Retrievepin
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   },
   {
     path: '/dashboard',

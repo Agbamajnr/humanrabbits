@@ -50,7 +50,7 @@ export default {
 
 .game-board {
   display: flex;
-  flex: 2;
+  flex: 1;
   max-width: 1600px !important;
   flex-wrap: wrap;
   flex-direction: row;

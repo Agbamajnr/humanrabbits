@@ -124,7 +124,7 @@
                 <a href="/wallet"><p>Wallet</p></a>
                 <a href="#"><p>Bonus</p></a>
                 <a href="#"><p>Referrals</p></a>
-                <a href="#" class="mt-8"><button disabled class="grid-center bg-green-rabbit w-36 h-12 text-white"><p class="text-sm">$20</p></button></a>
+                <a href="#" class="mt-8"><button disabled class="grid-center bg-green-rabbit w-36 h-12 text-white"><p class="text-sm">{{Math.floor($store.state.user[0].wallet)}} trx</p></button></a>
             </div>
         </div>
       </div>

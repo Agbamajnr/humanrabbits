@@ -19,6 +19,10 @@ export default function createGame(deck) {
     })
   }
 
+  const restartGame = () => {
+    startGame();
+  }
+
   const status = computed(() => {
     if (matchesFound.value === 8) {
       return 'Player wins!'
@@ -39,6 +43,7 @@ export default function createGame(deck) {
     matchesFound,
     newPlayer,
     startGame,
-    status
+    status,
+    restartGame
   }
 }

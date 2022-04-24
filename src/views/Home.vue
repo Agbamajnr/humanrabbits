@@ -18,7 +18,7 @@
         <div class="hero mt-28  flex flex-col items-center justify-center gap-y-6 text-white">
             <p class="text-3xl lg:text-5xl w-full lg:w-4/5 font-bold text-white lg:px-8">Earn crypto by playing rabbit card game</p>
             <p class="w-full lg:w-3/5 lg:px-9 text-grey-300">Humanrabbit is a play to earn game where users stake tron for a game and earn in multiples of their stakes as they win</p>
-            <a href="/login" class="w-full lg:w-auto"><button class="grid-center bg-green-rabbit w-full  lg:w-52 mt-6 h-10 text-white"><p class="text-sm font-bold">Play Now</p></button></a>
+            <a :href="conditionedRoute" @click="changeRoute($store.state.authenticated)" class="w-full lg:w-auto"><button class="grid-center bg-green-rabbit w-full  lg:w-52 mt-6 h-10 text-white"><p class="text-sm font-bold">Play Now</p></button></a>
         </div>
 
         <div id="packages" class="packages w-full gap-y-5 lg:gap-x-5 flex flex-col lg:flex-row items-center justify-center mt-12">

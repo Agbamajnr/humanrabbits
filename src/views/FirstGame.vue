@@ -25,6 +25,7 @@ export default {
 
     const {
       newPlayer,
+      restartGame,
       matchesFound,
       status
     } = createGame(cardList)
@@ -70,6 +71,15 @@ export default {
       }
     }
 
+    const startNewGame = () => {
+        restartGame()
+        userCanFlipCard.value = true;
+        userCanAddStake.value = true;
+        haveChosedStake.value = false;
+        userFinishedSession.value = false;
+        finalReward.value = null;
+        resText.value = 'Pick any card'
+    }
     
 
     watch(matchesFound, currentValue => {
@@ -172,7 +182,8 @@ export default {
       successColor,
       userFinishedSession,
       haveChosedStake,
-      finalReward
+      finalReward,
+      startNewGame
     }
   }
 }
@@ -232,7 +243,7 @@ export default {
         </fieldset>
 
 
-        <button class="replay grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">Play Again</p></button>
+        <button class="replay grid-center bg-green-rabbit w-28 h-10 text-white" @click="startNewGame"><p class="text-sm">Play Again</p></button>
       </div>
     </div>
   </div>
@@ -285,5 +296,9 @@ export default {
 .legend {
     transform: rotateY(180deg);
 
+}
+
+.shuffle-card-move {
+  transition: transform 0.8s ease-in;
 }
 </style>

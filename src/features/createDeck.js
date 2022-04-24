@@ -26,8 +26,8 @@ const initDeck = deckData => {
     if(item === doubleCard) {
         cardList.value.push({
         value: item,
-        variant: 1,
-        visible: true,
+        variant: 2,
+        visible: false,
         position: null,
         matched: false
       })

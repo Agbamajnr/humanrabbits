@@ -51,7 +51,7 @@ export default {
                 statusInfo.value = true
 
                 setTimeout(() => {
-                    router.push('/dashboard')
+                    router.push('/profile')
                 }, 3000);
             } else statusInfo.value = false;
         }

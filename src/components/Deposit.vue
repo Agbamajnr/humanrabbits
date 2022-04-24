@@ -7,7 +7,7 @@
           </div>
           <qrcode-vue :value="$store.state.user[0].userDetails.trxAddress" level="H" :size="230"></qrcode-vue>
           <div class="address row-flex relative w-full h-full items-center">
-              <p class="text-sm text-left pl-2">{{$store.state.user[0].userDetails.trxAddress}}</p>
+              <p class="text-sm text-left pl-2 overflow-hidden">{{$store.state.user[0].userDetails.trxAddress}}</p>
               <button class="copy absolute right-1 bottom-1 text-white text-center" @click="copyAddress($store.state.user[0].userDetails.trxAddress)"><p v-if="addressCopied === false">Copy</p><p v-if="addressCopied === true">Copied</p></button>
           </div>
       </div>
@@ -60,7 +60,7 @@ export default {
 
     @media screen and (max-width: 768px){
         .deposit {
-            width: 90%;
+            width: 90% !important;
         }
     }
 </style>
