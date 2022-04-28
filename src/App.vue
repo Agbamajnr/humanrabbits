@@ -12,6 +12,28 @@ import axios from "axios"
 
 export default{
   setup() {
+    // const userHasAutoplay = true;
+    // let userStake = 50;
+
+    // const wordsBank = ['die', "pity", "suffer", "sad"]
+    // const matchingWords = ['die', "pity", "suffer", "sad", "confused", "party", "nice", "cover", 'die', "pity", "suffer", "sad"]
+
+    // function random(mn, mx) {
+    //     return Math.random() * (mx - mn) + mn;
+    // }
+
+    // function matchRandomWords() {
+    //   let randomWord = matchingWords[Math.floor(random(1, matchingWords.length))]
+
+    //   const matchedWords = wordsBank.filter(word => word == randomWord)
+
+    //   console.log(matchedWords);
+
+    //   console.log(randomWord);
+    // }
+
+    // matchRandomWords();
+    
     const store = useStore();
       const getUser = async () => {
         try {

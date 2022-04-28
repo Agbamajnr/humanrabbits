@@ -20,10 +20,10 @@ export default {
     setup() {
         const secondData = reactive({
             username: '',
+            referralCode: '',
         })
 
         const processing = ref(false)
-        console.log(processing);
 
         return {secondData, processing}
     }

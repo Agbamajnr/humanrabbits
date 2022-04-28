@@ -72,15 +72,55 @@ export default {
     }
 
     const startNewGame = () => {
-        restartGame()
-        userCanFlipCard.value = true;
-        userCanAddStake.value = true;
-        haveChosedStake.value = false;
-        userFinishedSession.value = false;
-        finalReward.value = null;
-        resText.value = 'Pick any card'
+      userCanFlipCard.value = true;
+      userCanAddStake.value = false;
+      haveChosedStake.value = false;
+      userFinishedSession.value = false;
+      successColor.value = null;
+      finalReward.value = null;
+      resText.value = 'Pick any card';
+      restartGame()
+    }
+
+
+
+    const autoplay = () => {
+      function random(mn, mx) {
+        return Math.random() * (mx - mn) + mn;
+      }
+
+      let randomFace = Math.floor(random(1, cardList.value.length))
+      let randomPosition = Math.floor(random(0, cardList.value.length))
+
+      const cardInfo = reactive({
+        faceValue: randomFace.toString(),
+        position: randomPosition
+      });
+      
+      function generateNewValues() {
+        let newFace = Math.floor(random(1, cardList.value.length));
+        let newPos = Math.floor(random(0, cardList.value.length));
+        cardInfo.position = newPos;
+        cardInfo.faceValue = newFace.toString();
+
+
+        flipCard(cardInfo)
+      }
+      
+
+
+      if (cardList.value[cardInfo.position].visible = false) {
+        flipCard(cardInfo);
+
+      } else {
+
+        generateNewValues()
+      }
+
     }
     
+
+
 
     watch(matchesFound, currentValue => {
       if (currentValue === 8) {
@@ -150,7 +190,7 @@ export default {
 
 
     const increaseStake = () => {
-      if (userBalance.value > userInput.stake) {
+      if (userBalance.value > userInput.stake - 50) {
         userInput.stake = userInput.stake + 50;
       }else if (userBalance.value > userInput.stake) {
         resText.value = "Please deposit to continue"
@@ -183,7 +223,8 @@ export default {
       userFinishedSession,
       haveChosedStake,
       finalReward,
-      startNewGame
+      startNewGame,
+      autoplay
     }
   }
 }
@@ -198,7 +239,7 @@ export default {
       <p class="text-3xl text-white" :class="{'text-green-rabbit text-3xl text-white': successColor === true, 'text-red-rabbit ': successColor === false,}">{{resText}}</p>
       <GameBoard :cardList="cardList" :status="status" @flip-card="flipCard"  />
 
-      <div id="addStake" class="w-full flex flex-row justify-between items-center" v-if="userCanAddStake">
+      <div id="addStake" class="w-full flex flex-col sm:flex-row gap-y-5 sm:justify-between items-center" v-if="userCanAddStake">
         <div class="inputStake row-flex gap-x-4 items-center">
           <button class="reduce stakeAction grid-center h-10 w-10" @click="decreaseStake"><p class="text-xl text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>  </p></button>
 
@@ -214,28 +255,28 @@ export default {
         <button class="grid-center bg-green-rabbit w-28 h-10 text-white" @click="playStake($store.state.user[0].userDetails._id)"><p class="text-sm">Play</p></button>
       </div>
 
-      <div class="showStake w-full flex flex-row justify-between items-center" v-if="haveChosedStake && !userFinishedSession">
+      <div class="showStake w-full flex flex-col sm:flex-row gap-y-5 sm:justify-between items-center" v-if="haveChosedStake && !userFinishedSession">
         <fieldset class="stakeDetails h-12 w-24 flex flex-row-reverse justify-center items-center px-5 gap-x-1">
           <legend class="text-xs text-white legend flex flex-row  ml-4 px-1 self-start  border-black">Stake</legend>
           <img src="../assets/img/tron-trx-logo.svg" class="w-6 h-5" alt="">
           <p class="text-white">{{userInput.stake}}</p>
         </fieldset>
 
-        <div class="flex flex-row gap-x-6 items-center ">
+        <div class="flex flex-row gap-x-3 sm:gap-x-6 items-center ">
           <fieldset class="stakeAmount h-12 w-28 flex flex-row-reverse justify-center items-center px-3 gap-x-1">
             <legend class="text-xs text-white legend flex flex-row  ml-4 px-1 self-start  border-black">Reward</legend>
             <img src="../assets/img/tron-trx-logo.svg" class="w-6 h-5" alt="">
             <p class="text-white">{{userInput.stake * 2}}</p>
           </fieldset>
 
-          <fieldset class="stakeDetails h-10 mt-2 w-36 flex flex-row-reverse justify-center items-center  gap-x-1">
+          <fieldset class="stakeDetails h-10 mt-2 w-36 flex flex-row-reverse justify-center items-center  gap-x-1 cursor-pointer" @click="autoplay">
             <p class="text-white text-sm">Auto-play</p>
           </fieldset>
         </div>
       </div>
 
 
-      <div class="finishedSession w-full flex flex-row justify-end items-center gap-x-5" v-if="userFinishedSession">
+      <div class="finishedSession w-full flex flex-row justify-center sm:justify-end items-center gap-x-5" v-if="userFinishedSession">
         <fieldset class="stakeAmount h-12 w-28 flex flex-row-reverse justify-center items-center px-3 gap-x-1">
           <legend class="text-xs text-white legend flex flex-row  ml-4 px-1 self-start  border-black">Reward</legend>
           <img src="../assets/img/tron-trx-logo.svg" class="w-6 h-5" alt="">

@@ -28,7 +28,7 @@ export default {
 </script>
 
 <template>
-    <transition-group tag="section" class="game-board gap-4 flex flex-row  w-full max-h-max" name="shuffle-card">
+    <transition-group tag="section" class="game-board gap-4 flex flex-row justify-center items-center sm:justify-start sm:items-start  w-full max-h-max" name="shuffle-card">
       <Card
         v-for="card in cardList"
         :key="`${card.value}-${card.variant}`"
@@ -50,7 +50,7 @@ export default {
 
 .game-board {
   display: flex;
-  flex: 1;
+  flex: 3;
   max-width: 1600px !important;
   flex-wrap: wrap;
   flex-direction: row;
@@ -62,17 +62,15 @@ export default {
   }
 }
 
-@media screen and (min-width: 500px) {
+/* @media screen and (max-width: 768px) {
   .game-board {
-    grid-template-columns: repeat(4, 90px);
-    grid-template-rows: repeat(4, 90px);
+    
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 500px) {
   .game-board {
-    grid-template-columns: repeat(4, 120px);
-    grid-template-rows: repeat(4, 120px);
+    
   }
-}
+} */
 </style>

@@ -9,8 +9,8 @@
             <div class="nav gap-x-6 lg:flex flex-row hidden">
                 <a href="/dashboard" class="active"><p>Games</p></a>
                 <a href="/wallet"><p>Wallet</p></a>
-                <a href="#"><p>Bonus</p></a>
-                <a href="#"><p>Referrals</p></a>
+                <a href="/dashboard/profile"><p>Profile</p></a>
+                <a href="/referral"><p>Referrals</p></a>
             </div>
             <a href="#" class="lg:block hidden"><button disabled class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">{{Math.floor($store.state.user[0].wallet)}} trx</p></button></a>
         </div>
@@ -122,8 +122,8 @@
             <div class="mt-16 gap-y-8 flex flex-col text-xl">
                 <a href="/dashboard"><p>Games</p></a>
                 <a href="/wallet"><p>Wallet</p></a>
-                <a href="#"><p>Bonus</p></a>
-                <a href="#"><p>Referrals</p></a>
+                <a href="/dashboard/profile"><p>Profile</p></a>
+                <a href="/referral"><p>Referrals</p></a>
                 <a href="#" class="mt-8"><button disabled class="grid-center bg-green-rabbit w-36 h-12 text-white"><p class="text-sm">{{Math.floor($store.state.user[0].wallet)}} trx</p></button></a>
             </div>
         </div>

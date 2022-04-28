@@ -45,16 +45,15 @@ export default {
 <template>
   <div class="card relative" :class="flippedStyles" @click="selectCard">
     <div class="card-face is-front">
-      <p class="text-6xl absolute top-2 right-3 text-white">0{{value}}</p>
+      <p class="text-2xl g:text-6xl absolute top-2 right-3 text-white">0{{value}}</p>
       <img
         class="card-image"
-        :srcset="`/images/rabbits/${value}@2x.svg 2x, /images/rabbits/${value}.svg 1x`"
         :src="`/images/rabbits/${value}.svg`"
         :alt="value"
       />
     </div>
     <div class="card-face is-back">
-      <p class="text-6xl absolute top-2 right-3 text-white">0{{value}}</p>
+      <p class="text-2xl g:text-6xl absolute top-2 right-3 text-white">0{{value}}</p>
       <img src="@/assets/img/logo.svg" alt="">
     </div>
   </div>
@@ -96,7 +95,7 @@ export default {
 .card-face.is-back:hover {
   transition: all .5s linear;
   cursor: pointer;
-  background-image: url('../../assets/img/game/open-card.svg');
+  background-color: #08C052;
 }
 
 .card-image {

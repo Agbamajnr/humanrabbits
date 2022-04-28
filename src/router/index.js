@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import Wallet from '../views/Wallet.vue'
 import Game1 from '../views/FirstGame.vue'
 import Profile from '../views/Profile.vue'
+import Referral from '../views/Referral.vue'
 
 
 
@@ -47,6 +48,11 @@ const routes = [
     path: '/wallet',
     name: 'Wallet',
     component: Wallet
+  },
+  {
+    path: '/referral',
+    name: 'Referral',
+    component: Referral
   },
   {
     path: '/games/rabbit1',
