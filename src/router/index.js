@@ -8,6 +8,7 @@ import Wallet from '../views/Wallet.vue'
 import Game1 from '../views/FirstGame.vue'
 import Profile from '../views/Profile.vue'
 import Referral from '../views/Referral.vue'
+import Join from '../views/Join.vue'
 
 
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/join/:rfCode',
+    name: 'Join',
+    component: Join
   },
   {
     path: '/login',

@@ -31,8 +31,6 @@ export default {
 
       let details = inject("registeringUser");
 
-      console.log(details);
-
       const data = reactive({
         id: details.value._id
       })

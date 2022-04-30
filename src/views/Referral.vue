@@ -19,27 +19,26 @@
             <div class="actions w-full lg:w-2/6 flex flex-col items-center gap-y-4 p-4 lg:p-8">
                 <p>Refferals</p>
                 <p class="text-2xl font-bold text-white">0</p>
-                <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5" @click="copyLink('this is the link')">
+                <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5" @click="copyLink(`http://localhost:8080/join/${$store.state.user[0].userDetails.referralCode}`)">
                     <p class="font-bold text-lg text-white" v-if="!linkCopied">Copy Link</p>
                     <p class="font-bold text-lg text-white" v-if="linkCopied">Copied</p>
                 </button>
-                <button class="referral-link text-xs overflow-hidden w-full grid-center mt-5 px-1"><p class="font-bold text-lg text-white">https//:humanrabbit.xyz/join/46579</p></button>
+                <button class="referral-link text-xs overflow-hidden w-full grid-center mt-5 px-1"><p class="font-bold text-lg text-white">http://localhost:8080/join/{{$store.state.user[0].userDetails.referralCode}}</p></button>
             </div>
 
 
             <div class="referrals w-full lg:w-3/6 h-full gap-y-5 flex flex-col">
                 <p class="text-lg text-white w-full flex self-start m-4 lg:m-8">Refferal earnings</p>
                 <div class="h-full w-full flex flex-col items-center text-white text-left justify-center overflow-auto">
-                    <!-- <table class="w-full table-auto" v-if="transactions.length > 1">
+                    <table class="w-full table-auto" v-if="referrals.length > 1">
 
-                        <tr class="txn-data font-4xl"  v-for="txn in transactions" :key="txn">
-                            <td>{{txn.date}}</td> 
-                            <td>{{txn.type}}</td>
-                            <td>{{txn._id}}</td>
-                            <td>{{txn.amount}}TRX</td>
-                            <td class="text-green-rabbit">{{txn.statusInfo}}</td>
+                        <tr class="txn-data font-4xl"  v-for="rf in referrals" :key="rf">
+                            <td>{{rf.userReferred}}</td> 
+                            <td>{{rf.userReferring}}</td>
+                            <td>{{txn.referralEarnings}}TRX</td>
+                            <td class="text-green-rabbit">Success</td>
                         </tr>
-                    </table> -->
+                    </table>
                     <img src="../assets/img/transaction.svg" class="empty w-28 h-28" alt="No transactions">    
                 </div>
             </div>
@@ -91,29 +90,29 @@ export default {
             copy(link)
             linkCopied.value = true;
         }
-        // const referrals = ref([])
+        const referrals = ref([])
 
-        // let userDetails = computed(() => {
-        //     return store.state.user[0].userDetails
-        // })
+        let userDetails = computed(() => {
+            return store.state.user[0].userDetails
+        })
 
         
 
-        // function getReferrals() {
-        //     userDetails.value.transactions.forEach(async (txn) => {
-        //         const txnDetails = await axios.get(url + `/transaction/${txn}`)
+        function getReferrals() {
+            userDetails.value.userReferrals.forEach(async (txn) => {
+                const rfDetails = await axios.get(url + `/transaction/${txn}`)
 
-        //         console.log(txnDetails);
+                console.log(rfDetails);
 
-        //         referrals.value.push(txnDetails.data.transaction)
+                referrals.value.push(rfDetails.data.referral)
 
-        //     }) 
-        // }
+            }) 
+        }
 
-        // setTimeout(() => {
-        //     getReferrals()
+        setTimeout(() => {
+            getReferrals()
 
-        // }, 3000);
+        }, 3000);
 
 
 
@@ -128,7 +127,7 @@ export default {
         }
 
 
-        return {main, active_nav, handleNav, copyLink, linkCopied}
+        return {main, active_nav, handleNav, copyLink, linkCopied, referrals}
     }
 }
 </script>
