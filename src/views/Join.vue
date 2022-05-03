@@ -8,9 +8,9 @@
 
 
 <script>
-import FirstStep from '../components/FirstRegister.vue'
-import SecondStep from '../components/SecondRegister.vue'
-import LastStep from '../components/EmailVerification.vue'
+import FirstStep from '../components/forms/FirstRegister.vue'
+import SecondStep from '../components/forms/SecondRegister.vue'
+import LastStep from '../components/forms/EmailVerification.vue'
 
 
 import {ref, reactive, onBeforeMount, provide, computed} from 'vue'

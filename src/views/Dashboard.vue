@@ -1,19 +1,8 @@
 <template>
   <div class="main flex  justify-center w-full min-h-screen" ref="main">
-      <div class="body w-4/5 h-full py-5 flex flex-col" v-if="active_nav === false && $store.state.user[0].wallet">
-        <div class="header flex flex-row items-center w-full justify-between text-white">
-            <div class="logo">
-                <img src="../assets/img/logo.svg" alt="">
-            </div>
-            <button class="mobile-nav lg:hidden block" @click="handleNav"><img src="../assets/img/nav.svg" alt=""></button>
-            <div class="nav gap-x-6 lg:flex flex-row hidden">
-                <a href="/dashboard" class="active"><p>Games</p></a>
-                <a href="/wallet"><p>Wallet</p></a>
-                <a href="/dashboard/profile"><p>Profile</p></a>
-                <a href="/referral"><p>Referrals</p></a>
-            </div>
-            <a href="#" class="lg:block hidden"><button disabled class="grid-center bg-green-rabbit w-28 h-10 text-white"><p class="text-sm">{{Math.floor($store.state.user[0].wallet)}} trx</p></button></a>
-        </div>
+      <Loader v-if="!$store.state.user[0]"/>
+      <div class="body w-4/5 h-full py-5 flex flex-col" v-if="active_nav === false && $store.state.user[0]">
+        <Header activeTab="dashboard" @handleMnav="handleNav"/>
 
         <div class="hero mt-16 lg:mt-12  flex flex-col items-center justify-center lg:gap-y-6 text-white">
             <p class="w-full lg:w-4/5  lg:px-10 text-grey-300">All our games are exclusive and available to play at anytime from anywhere. They're made for mobile, low on data usage and stakes, and are all certified by GLI. Pick one and start playing. </p>  
@@ -111,33 +100,30 @@
             </div>
         </div>
       </div>
-      <div :class="{'overlay lg:hidden w-4/5 h-full py-5 flex flex-col min-h-screen': active_nav === true, 'hidden': active_nav === false,}">
-          <div class="header flex flex-col items-center w-full justify-between text-white">
-            <div class="top row-flex justify-between w-full">
-                <div class="logo">
-                    <img src="../assets/img/logo.svg" alt="">
-                </div>
-                <button class="text-xl font-bold" @click="handleNav">X</button>
-            </div>
-            <div class="mt-16 gap-y-8 flex flex-col text-xl">
-                <a href="/dashboard"><p>Games</p></a>
-                <a href="/wallet"><p>Wallet</p></a>
-                <a href="/dashboard/profile"><p>Profile</p></a>
-                <a href="/referral"><p>Referrals</p></a>
-                <a href="#" class="mt-8"><button disabled class="grid-center bg-green-rabbit w-36 h-12 text-white"><p class="text-sm">{{Math.floor($store.state.user[0].wallet)}} trx</p></button></a>
-            </div>
-        </div>
-      </div>
+    <MobileNav @handleMnav="handleNav" v-if="active_nav === true"/>
   </div>
 </template>
 
 <script>
-import {ref, reactive} from 'vue'
+import {ref, reactive, computed, provide} from 'vue'
+import Loader from '../components/Loader.vue'
+import Header from '../components/Header.vue'
+import MobileNav from '../components/MobileNav.vue'
 export default {
-    
+    components: {
+        Loader,
+        Header,
+        MobileNav,
+    },
     setup() {
         const main = ref()
         const active_nav = ref(false)
+
+        const navStatus = computed(() => {
+            return active_nav.value
+        })
+
+        provide('navStatus', navStatus)
 
         const handleNav = () => {
             active_nav.value = !active_nav.value;
@@ -150,7 +136,7 @@ export default {
         }
 
 
-        return {main, active_nav, handleNav}
+        return {main, active_nav, handleNav, navStatus}
     }
 }
 </script>
@@ -181,10 +167,4 @@ export default {
         right: -3px;
     }
 
-    .active {
-        border-bottom: 1px solid #08C052;
-        border-bottom-width: 3px;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
 </style>

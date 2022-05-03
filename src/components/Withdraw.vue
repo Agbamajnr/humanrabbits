@@ -1,5 +1,5 @@
 <template>
-  <div class="withdraw">
+  <div class="withdraw" v-if="$store.state.user[0]">
       <div class="modal w-full h-full col-flex items-center gap-y-7 p-7">
           <div class="row-flex justify-between w-full">
               <p class="text-xl font-bold w-full text-left">Withdraw Tron(Trx)</p>

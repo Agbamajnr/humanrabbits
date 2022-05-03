@@ -9,6 +9,7 @@ import Game1 from '../views/FirstGame.vue'
 import Profile from '../views/Profile.vue'
 import Referral from '../views/Referral.vue'
 import Join from '../views/Join.vue'
+import MainProfile from '../views/MainProfile.vue';
 
 
 
@@ -49,6 +50,11 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard
+  },
+  {
+    path: '/dashboard/profile',
+    name: 'MainProfile',
+    component: MainProfile
   },
   {
     path: '/wallet',
