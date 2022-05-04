@@ -8,7 +8,7 @@
             <input type="text" class="w-full input" placeholder="Enter Tron address(Trc20)" v-model="address">
             <div class="amount row-flex relative w-full h-full items-center">
                 <input type="number" class="w-full h-full" placeholder="Enter amount" v-model="amount">
-                <button class="max absolute right-2 text-white text-center font-bold text-green-rabbit">MAX</button>
+                <button class="max absolute right-2 text-white text-center font-bold text-green-rabbit cursor-pointer" @click="amount = $store.state.user[0].wallet">MAX</button>
             </div>
             <p class="text-xl text-left w-full">Available balance: <span class="text-green-rabbit">{{$store.state.user[0].wallet}}TRX</span></p>
             <p class="text-sm  text-left font-medium">Withdraw only to Tron(Trc20) address, failure to do so will result to loss of funds. </p>
@@ -43,7 +43,6 @@ export default {
               address: address.value,
               amount: amount.value
           })
-          console.log(data);
           const response = await axios.post(url + '/blockchain/withdraw', data)
 
           processing.value = false

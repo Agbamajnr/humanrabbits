@@ -11,8 +11,13 @@
         <input type="text" v-model="validateData.username" placeholder="New Username">
         <input type="number"  placeholder="Old Pin" v-model="validateData.oldPin">
         <input type="number" placeholder="New Pin" v-model="validateData.newPin">
-        <button class="save-btn bg-green-rabbit  grid-center mt-5" @click="$emit('changeComp', 'main')"><p class="font-bold text-lg">Save</p></button>
+        <button class="save-btn bg-green-rabbit  grid-center mt-5" @click="validateInputAndSend">
+          <p class="font-bold text-lg" v-if="processing == false">Save</p>
+          <p class="font-bold text-lg" v-if="processing == 'Nothing'">{{msg}}</p>
+          <img src="../../assets/img/rolling.gif" v-if="processing == true" class="w-6 h-6" alt="">
+        </button>
       </div>
+      <p class="text-red-800">{{errors}}</p>
   </div>
 </template>
 
@@ -21,7 +26,7 @@ import {reactive, computed, ref} from "vue"
 import { useStore } from 'vuex'
 import axios from 'axios'
 export default {
-  setup() {
+  setup(props, ctx) {
     const validateData = reactive({
       username: '',
       oldPin: '',
@@ -34,29 +39,54 @@ export default {
       newPin: ''
     })
 
-    const errors = ref('')
-
-    const validateInputAndSend = () => {
-      if (validateData.username.toLowerCase().length > 1) {
-        if (validateData.oldPin.toString().length === 4) {
-          dataToSend.oldPin = validateData.oldPin;
-        }
-      }
-    }
-    
-
     const store = useStore()
 
     let userDetails = computed(() => {
       return store.state.user[0].userDetails
     })
 
+    const errors = ref('')
+    const msg = ref('')
+    const processing = ref(false)
+
+    const validateInputAndSend = async () => {
+      processing.value = true
+      if (validateData.username.toLowerCase().length > 1) {
+        dataToSend.username = validateData.username;
+        if (validateData.oldPin.toString().length === 4) {
+          dataToSend.oldPin = validateData.oldPin;
+
+          if (validateData.newPin.toString().length === 4) {
+            dataToSend.newPin = validateData.newPin;
+
+            const result = await axios.put('https://humanrabbit.onrender.com/api/auth/user/' + userDetails.value._id, dataToSend)
+
+            if (result.data.message == "Username And Pin Changed") {
+              processing.value = 'Nothing'
+              msg.value = 'Saved'
+
+              setTimeout(() => {
+                ctx.emit('changeComp', "main")
+              }, 1500);
+            } else {
+              processing.value = false
+              errors.value = result.data.message;
+            }
+          }
+        }
+        
+      }
+    }
+    
+
+    
+
 
 
       validateData.username = userDetails.value.username;
 
 
-    return {validateData, errors, userDetails}
+    return {validateData, errors, msg, processing, userDetails, validateInputAndSend}
   }
 }
 </script>

@@ -91,7 +91,6 @@ export default {
             userDetails.value.transactions.forEach(async (txn) => {
                 const txnDetails = await axios.get(url + `/transaction/${txn}`)
 
-                console.log(txnDetails);
 
                 transactions.value.push(txnDetails.data.transaction)
 

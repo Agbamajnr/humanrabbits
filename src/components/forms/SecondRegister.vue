@@ -52,8 +52,6 @@ export default {
         if (route.params.rfCode) {
             let code = route.params.rfCode
             secondData.referralCode = code.toString();
-
-            console.log(secondData);
         }
         
         
