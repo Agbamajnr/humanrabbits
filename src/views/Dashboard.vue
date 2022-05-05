@@ -131,14 +131,21 @@ export default {
     
 
         let userDetails = computed(() => {
-            return store.state.user[0].userDetails
+            return store.state.user[0]
         })
 
-        if (!userDetails.value.username) {
-            setTimeout(() => {
-                router.push('/dashboard')
-            }, 3000);
-        }
+        setTimeout(() => {
+            if (userDetails.value === undefined) {
+                console.log(userDetails);
+                setTimeout(() => {
+                    router.push('/login')
+                }, 2000);
+            } else {
+                setTimeout(() => {
+                    router.push('/dashboard')
+                }, 1000);
+            }
+        }, 3000);
 
         provide('navStatus', navStatus)
 

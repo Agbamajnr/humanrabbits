@@ -47,12 +47,10 @@ export default{
             await store.dispatch('setAuth', {authState: true, userDetails: res.data});
           } else  {
             await store.dispatch('setAuth', false);
-            router.push('/login')
           }
 
         } catch (error) {
           await store.dispatch('setAuth', false);
-          router.push('/login')
         }
       }
 
