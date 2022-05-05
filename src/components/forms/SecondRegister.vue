@@ -10,7 +10,7 @@
             <p class="font-bold text-lg" v-if="processing == false">Next</p>
             <img src="../../assets/img/rolling.gif" v-else class="w-6 h-6" alt="">
         </button>
-        <p class="text-center flex  self-center">Already have an account?<a href="/login" class="text-green-400 underline ml-1">Sign in</a></p>
+               <p class="text-center flex  self-center sm:flex-row flex-col"><span>Already have an account?</span><a href="/login" class="text-green-400 underline ml-1">Sign in</a></p>
     </div>
   
 </template>

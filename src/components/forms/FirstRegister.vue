@@ -10,7 +10,7 @@
         <p class="text-red-700 font-bolds">{{inputIssues}}</p>
         <p>By clicking “Next” you agree to <a href="Terms and conditions" class="text-green-400 underline">Terms and conditions</a></p>
         <button class="next-btn bg-green-rabbit w-full grid-center mt-5" @click="validateInput"><p class="font-bold text-lg">Next</p></button>
-        <p class="text-center flex  self-center">Already have an account?<a href="/login" class="text-green-400 underline ml-1">Sign in</a></p>
+        <p class="text-center flex  self-center sm:flex-row flex-col"><span>Already have an account?</span><a href="/login" class="text-green-400 underline ml-1">Sign in</a></p>
     </div>
 </template>
 <script>

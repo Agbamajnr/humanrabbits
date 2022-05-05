@@ -1,6 +1,6 @@
 <template>
   <div class="loader grid-center w-full min-h-screen">
-      <img src="/images/nft-nobg.svg">
+      <img src="/images/nft-nobg.svg" class="w-2/5 h-3/5">
   </div>
 </template>
 

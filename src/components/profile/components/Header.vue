@@ -2,7 +2,7 @@
     <div class="user-info w-full  col-flex items-center gap-y-1" v-if="userDetails !== undefined ">
         <img src="/images/rabbits/1.svg" class="w-36  avatar" alt="">
         <p class="text-xl font-3xl username mt-3">{{userDetails.username}}</p>
-        <p class="stats text-xs">33 Games, {{userDetails.currentBalance}} trx</p>
+        <p class="stats text-xs">{{userDetails.userGameSessions}} Games, {{userDetails.currentBalance}} trx</p>
     </div>
 </template>
 
@@ -20,8 +20,6 @@ export default {
     let userDetails = computed(() => {
       return store.state.user[0].userDetails
     })
-
-    console.log(userDetails);
 
 
     return {userDetails}
