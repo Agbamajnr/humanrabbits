@@ -3,7 +3,7 @@
     <div class="header flex flex-col items-center w-full justify-between text-white">
         <div class="top row-flex justify-between w-full">
             <div class="logo">
-                <img src="../assets/img/logo.svg" alt="">
+                 <a href="/"><img src="../assets/img/logo.svg" alt=""></a>
             </div>
             <button class="text-xl font-bold" @click="$emit('handleMnav')">X</button>
         </div>
