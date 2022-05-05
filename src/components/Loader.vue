@@ -1,6 +1,6 @@
 <template>
   <div class="loader grid-center w-full min-h-screen">
-      <img src="/images/loader-screen.svg">
+      <img src="/images/nft-nobg.svg">
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
 
 <style scoped>
     .loader {
-        background: #5893C5;
+        background: #090B13;
         height: 100% !important;
     }
     img {

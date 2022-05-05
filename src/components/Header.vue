@@ -1,7 +1,7 @@
 <template>
   <div class="header flex flex-row items-center w-full justify-between text-white">
         <div class="logo">
-            <img src="../assets/img/logo.svg" alt="">
+            <a href="/"><img src="../assets/img/logo.svg" alt=""></a>
         </div>
         <button class="mobile-nav lg:hidden block" @click="$emit('handleMnav')"><img src="../assets/img/nav.svg" alt=""></button>
         <div class="nav gap-x-6 lg:flex flex-row hidden">

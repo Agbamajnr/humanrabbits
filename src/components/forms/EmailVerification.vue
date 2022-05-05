@@ -110,5 +110,12 @@ export default {
             width: 100%;
             height: 100%;
         }
+      #otp{
+        max-width: 100vw;
+      }
+      input {
+        width: 40px;
+        height: 36px;
+      } 
     }
 </style>
