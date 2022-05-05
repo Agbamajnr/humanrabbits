@@ -50,7 +50,7 @@
                         <p>Return back</p>
                     </div>
                 </div>
-                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><a href="/games/rabbit1"><p>Available Now</p></a></button>
+                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Coming Soon</p></button>
                 <img src="../assets/img/designs/yellow.svg" class="design-star absolute" alt="">
             </div>
             <div class="card pl-6 pt-5 pb-5 pr-6 lg:pr-2 bg-purple-500 col-flex items-start gap-y-8 relative">
@@ -72,7 +72,7 @@
                         <p>Return back</p>
                     </div>
                 </div>
-                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><a href="/games/rabbit1"><p>Available Now</p></a></button>
+                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Coming Soon</p></button>
                 <img src="../assets/img/designs/white.svg" class="design-star absolute" alt="">
             </div>
 
@@ -95,7 +95,7 @@
                         <p>Return back</p>
                     </div>
                 </div>
-                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><a href="/games/rabbit1"><p>Available Now</p></a></button>
+                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Coming Soon</p></button>
                 <img src="../assets/img/designs/white.svg" class="design-star absolute" alt="">
             </div>
         </div>
@@ -106,6 +106,8 @@
 
 <script>
 import {ref, reactive, computed, provide} from 'vue'
+import { useStore } from 'vuex'
+import {useRouter} from 'vue-router'
 import Loader from '../components/Loader.vue'
 import Header from '../components/Header.vue'
 import MobileNav from '../components/MobileNav.vue'
@@ -119,9 +121,24 @@ export default {
         const main = ref()
         const active_nav = ref(false)
 
+        const router = useRouter();
+
         const navStatus = computed(() => {
             return active_nav.value
         })
+
+        const store = useStore()
+    
+
+        let userDetails = computed(() => {
+            return store.state.user[0].userDetails
+        })
+
+        if (!userDetails.value.username) {
+            setTimeout(() => {
+                router.push('/dashboard')
+            }, 3000);
+        }
 
         provide('navStatus', navStatus)
 

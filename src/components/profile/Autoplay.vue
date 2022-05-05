@@ -4,7 +4,7 @@
       <div class="user-info w-full  col-flex items-center gap-y-1">
         <img src="/images/rabbits/1.svg" class="w-36  avatar" alt="">
         <p class="text-xl font-3xl username mt-3">{{$store.state.user[0].userDetails.username}}</p>
-        <p class="stats text-xs">33 Games, {{$store.state.user[0].currentBalance}} trx</p>
+        <p class="stats text-xs">{{$store.state.user[0].userDetails.userGameSessions}} Games, {{$store.state.user[0].currentBalance}} trx</p>
       </div>
       <span class="divider w-full mt-10"></span>
       <p class="text-sm">Auto-play is an undefined technology created to play for the user. An AI assisted technology meant totake necessary moves in humanrabbit game and other SDk games developed on this platform. Users can enable or disable it. </p>

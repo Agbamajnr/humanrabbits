@@ -33,6 +33,8 @@ export default{
     // }
 
     // matchRandomWords();
+
+    const router = useRouter();
     
     const store = useStore();
       const getUser = async () => {
@@ -43,10 +45,14 @@ export default{
             const res = await axios.get('https://humanrabbit.onrender.com/api/auth/user', { withCredentials: true })
 
             await store.dispatch('setAuth', {authState: true, userDetails: res.data});
-          } else  await store.dispatch('setAuth', false);
+          } else  {
+            await store.dispatch('setAuth', false);
+            router.push('/login')
+          }
 
         } catch (error) {
           await store.dispatch('setAuth', false);
+          router.push('/login')
         }
       }
 

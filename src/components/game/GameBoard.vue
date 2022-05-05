@@ -1,4 +1,5 @@
 <script>
+import ref from 'vue'
 import Card from './Card'
 
 export default {
@@ -20,8 +21,13 @@ export default {
       ctx.emit('flip-card', payload)
     }
 
+   let array = [ "1", '2', '3', '4', '5', '6', '7', '8']
+
+    
+
     return {
-      selectCard
+      selectCard,
+      array
     }
   }
 }
@@ -30,14 +36,15 @@ export default {
 <template>
     <transition-group tag="section" class="game-board gap-4 flex flex-row justify-center items-center sm:justify-start sm:items-start  w-full max-h-max" name="shuffle-card">
       <Card
-        v-for="card in cardList"
-        :key="`${card.value}-${card.variant}`"
-        :matched="card.matched"
-        :value="card.value"
-        :visible="card.visible"
-        :position="card.position"
-        @select-card="selectCard"
-      />
+      v-for="(card, index) in cardList"
+      :key="`${card.value}-${card.variant}`"
+      :matched="card.matched"
+      :value="card.value"
+      :number="index"
+      :visible="card.visible"
+      :position="card.position"
+      @select-card="selectCard"
+    />
     </transition-group>
 </template>
 

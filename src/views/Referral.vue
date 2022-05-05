@@ -6,7 +6,7 @@
         <div class="referral-info gap-x-7 gap-y-7 lg:gap-y-0 w-full h-full justify-center flex flex-col lg:flex-row mt-12">
             <div class="actions w-full lg:w-2/6 flex flex-col items-center gap-y-4 p-4 lg:p-8">
                 <p>Refferals</p>
-                <p class="text-2xl font-bold text-white">0</p>
+                <p class="text-2xl font-bold text-white">{{$store.state.user[0].userDetails.userReferrals.length}}</p>
                 <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5" @click="copyLink(`http://localhost:8080/join/${$store.state.user[0].userDetails.referralCode}`)">
                     <p class="font-bold text-lg text-white" v-if="!linkCopied">Copy Link</p>
                     <p class="font-bold text-lg text-white" v-if="linkCopied">Copied</p>

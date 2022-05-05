@@ -15,6 +15,10 @@ export default {
       type: String,
       required: true
     },
+    number: {
+      type: String,
+      required: true
+    },
     visible: {
       type: Boolean,
       default: false
@@ -45,7 +49,7 @@ export default {
 <template>
   <div class="card relative" :class="flippedStyles" @click="selectCard">
     <div class="card-face is-front">
-      <p class="text-2xl g:text-6xl absolute top-2 right-3 text-white">0{{value}}</p>
+      <p class="text-2xl g:text-6xl absolute top-2 right-3 text-white">0{{number}}</p>
       <img
         class="card-image"
         :src="`/images/rabbits/${value}.svg`"
@@ -53,7 +57,7 @@ export default {
       />
     </div>
     <div class="card-face is-back">
-      <p class="text-2xl g:text-6xl absolute top-2 right-3 text-white">0{{value}}</p>
+      <p class="text-2xl g:text-6xl absolute top-2 right-3 text-white">0{{number}}</p>
       <img src="@/assets/img/logo.svg" alt="">
     </div>
   </div>

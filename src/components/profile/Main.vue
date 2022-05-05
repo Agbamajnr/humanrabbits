@@ -4,7 +4,7 @@
       <div class="user-info w-full  col-flex items-center gap-y-1">
         <img src="/images/rabbits/1.svg" class="w-36  avatar" alt="">
         <p class="text-xl font-3xl username mt-3">{{$store.state.user[0].userDetails.username}}</p>
-        <p class="stats text-xs">33 Games, {{$store.state.user[0].currentBalance}} trx</p>
+        <p class="stats text-xs">{{$store.state.user[0].userDetails.userGameSessions}} Games, {{$store.state.user[0].currentBalance}} trx</p>
       </div>
       <span class="divider w-full mt-10"></span>
       <div class="links w-full gap-y-2 col-flex h-full justify-center">
@@ -33,17 +33,19 @@
 </template>
 
 <script>
-import {router} from "vue-router"
+import {useRouter} from 'vue-router'
 import axios from 'axios'
 export default {
 
   setup() {
+    const router = useRouter();
     const logoutUser = async () => {
       const logout = await axios.post('https://humanrabbit.onrender.com/api/auth/logout', { withCredentials: true });
 
-      if (logout.data.message) {
+      setTimeout(() => {
         router.push('/login')
-      }
+      }, 100);
+      alert(logout.data.message);
     }
     return {logoutUser}
   }

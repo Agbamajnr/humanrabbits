@@ -10,7 +10,6 @@ function randomIntFromInterval(min, max) {
 const initDeck = deckData => {
   const rndInt = randomIntFromInterval(1, 4)
   const doubleCard = rndInt.toString();
-  console.log(doubleCard);
 
   deckData.forEach(item => {
     cardList.value.push({
@@ -18,7 +17,10 @@ const initDeck = deckData => {
       variant: 1,
       visible: false,
       position: null,
-      matched: false
+      matched: false,
+      number: {
+        type: String
+      }
     })
 
 
@@ -29,7 +31,10 @@ const initDeck = deckData => {
         variant: 2,
         visible: false,
         position: null,
-        matched: false
+        matched: false,
+        number: {
+          type: String
+        }
       })
     }
   })
