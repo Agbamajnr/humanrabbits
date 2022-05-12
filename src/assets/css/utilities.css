@@ -139,3 +139,11 @@
 .text-red-rabbit {
     color: #FF1E1E;
 }
+
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+-webkit-appearance: none; 
+margin: 0; 
+}
