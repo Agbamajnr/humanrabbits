@@ -5,7 +5,7 @@
             <div class="logo">
                 <img src="../assets/img/logo.svg" alt="">
             </div>
-            <button class="mobile-nav lg:hidden block" @click="handleNav"><img src="../assets/img/nav.svg" alt=""></button>
+            <button class="mobile-nav lg:hidden block" @click="handleNav"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg></button>
             <div class="nav gap-x-6 lg:flex flex-row hidden">
                 <a href="#packages"><p>Home</p></a>
                 <a href="#"><p>Gameplay</p></a>
@@ -138,13 +138,6 @@
 <script>
 import {ref, reactive} from 'vue'
 export default {
-    metaInfo: {
-        title: 'Home',
-        meta: {
-            name: 'description',
-            content: 'Earn with NFT'
-        }
-    },
     setup() {
         const main = ref()
         const active_nav = ref(false)
