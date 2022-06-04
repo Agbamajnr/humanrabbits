@@ -40,10 +40,8 @@ export default{
       const getUser = async () => {
         try {
           const cookies = await axios.get('https://humanrabbit.onrender.com/api/auth/checkCookies', { withCredentials: true });
-          console.log(cookies.data);
           if(cookies.data === true) {
             const res = await axios.get('https://humanrabbit.onrender.com/api/auth/user', { withCredentials: true })
-
             await store.dispatch('setAuth', {authState: true, userDetails: res.data});
           } else  {
             await store.dispatch('setAuth', false);
@@ -80,4 +78,40 @@ export default{
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.spinner {
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  width: 12px;
+  height: 12px;
+  
+  & .path {
+    stroke: white;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+  
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
 </style>

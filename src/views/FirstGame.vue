@@ -49,7 +49,7 @@ export default {
     const finalReward = ref();
     const userFinishedSession = ref(false);
 
-
+    //handlem flipping pf card
     const flipCard = payload => {
       if (userCanFlipCard.value) {
         cardList.value[payload.position].visible = true
@@ -83,7 +83,7 @@ export default {
     }
 
 
-
+    //autoplay card game 
     const autoplay = () => {
       function random(mn, mx) {
         return Math.random() * (mx - mn) + mn;
@@ -175,6 +175,8 @@ export default {
       { deep: true }
     )
 
+    //
+
     const playStake = (userId) => {
       data.id = userId;
       if(userBalance.value < userInput.stake) {
@@ -185,7 +187,6 @@ export default {
         haveChosedStake.value = true;
         userCanAddStake.value = false;
       }
-      console.log(userBalance, userInput.stake);
     }
 
 

@@ -117,6 +117,13 @@ export default {
         Header,
         MobileNav,
     },
+    metaInfo: {
+        title: 'Dashboard',
+        meta: {
+            name: 'description',
+            content: 'User Dashboard'
+        }
+    },
     setup() {
         const main = ref()
         const active_nav = ref(false)
@@ -136,14 +143,7 @@ export default {
 
         setTimeout(() => {
             if (userDetails.value === undefined) {
-                console.log(userDetails);
-                setTimeout(() => {
-                    router.push('/login')
-                }, 2000);
-            } else {
-                setTimeout(() => {
-                    router.push('/dashboard')
-                }, 1000);
+                router.push('/profile')
             }
         }, 3000);
 

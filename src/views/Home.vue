@@ -63,7 +63,7 @@
                         <p>Return back</p>
                     </div>
                 </div>
-                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Available Now</p></button>
+                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Coming Soon</p></button>
                 <img src="../assets/img/designs/yellow.svg" class="design-star absolute" alt="">
             </div>
             <div class="card pl-6 pt-5 pb-5 pr-6 lg:pr-2 bg-purple-500 col-flex items-start gap-y-8 relative">
@@ -85,7 +85,7 @@
                         <p>Return back</p>
                     </div>
                 </div>
-                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Available Now</p></button>
+                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Coming Soon</p></button>
                 <img src="../assets/img/designs/white.svg" class="design-star absolute" alt="">
             </div>
 
@@ -108,7 +108,7 @@
                         <p>Return back</p>
                     </div>
                 </div>
-                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Available Now</p></button>
+                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Coming Soon</p></button>
                 <img src="../assets/img/designs/white.svg" class="design-star absolute" alt="">
             </div>
         </div>
@@ -138,6 +138,13 @@
 <script>
 import {ref, reactive} from 'vue'
 export default {
+    metaInfo: {
+        title: 'Home',
+        meta: {
+            name: 'description',
+            content: 'Earn with NFT'
+        }
+    },
     setup() {
         const main = ref()
         const active_nav = ref(false)

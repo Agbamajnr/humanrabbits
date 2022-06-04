@@ -70,6 +70,9 @@ export default {
         Header,
         Loader
     },
+    metaInfo: {
+        title: 'Wallet',
+    },
     setup() {
         const main = ref()
         const active_nav = ref(false)

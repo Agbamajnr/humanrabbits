@@ -14,7 +14,7 @@
         <button class="save-btn bg-green-rabbit  grid-center mt-5" @click="validateInputAndSend">
           <p class="font-bold text-lg" v-if="processing == false">Save</p>
           <p class="font-bold text-lg" v-if="processing == 'Nothing'">{{msg}}</p>
-          <img src="../../assets/img/rolling.gif" v-if="processing == true" class="w-6 h-6" alt="">
+          <img src="../../assets/img/rolling.gif" v-if="processing == true" class="w-12 h-12" alt="">
         </button>
       </div>
       <p class="text-red-800">{{errors}}</p>
@@ -27,36 +27,41 @@ import { useStore } from 'vuex'
 import axios from 'axios'
 export default {
   setup(props, ctx) {
+    //data to validate
     const validateData = reactive({
       username: '',
       oldPin: '',
       newPin: ''
     })
 
+    //processed data to send to API
     const dataToSend = reactive({
       username: '',
       oldPin: '',
       newPin: ''
     })
-
+    // initialise vuex store
     const store = useStore()
+
 
     let userDetails = computed(() => {
       return store.state.user[0].userDetails
     })
 
+    // predefined data and structure
     const errors = ref('')
     const msg = ref('')
     const processing = ref(false)
 
+  // function to validate data and also send as payload to API
     const validateInputAndSend = async () => {
       processing.value = true
       if (validateData.username.toLowerCase().length > 1) {
         dataToSend.username = validateData.username;
-        if (validateData.oldPin.toString().length === 4) {
+        if (validateData.oldPin.toString().length >= 4) {
           dataToSend.oldPin = validateData.oldPin;
 
-          if (validateData.newPin.toString().length === 4) {
+          if (validateData.newPin.toString().length >= 4) {
             dataToSend.newPin = validateData.newPin;
 
             const result = await axios.put('https://humanrabbit.onrender.com/api/auth/user/' + userDetails.value._id, dataToSend)

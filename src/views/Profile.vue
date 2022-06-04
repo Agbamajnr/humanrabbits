@@ -13,7 +13,6 @@ export default {
         const router = useRouter();
         onMounted(async () => {
             const cookies = await axios.get('https://humanrabbit.onrender.com/api/auth/checkCookies', { withCredentials: true });
-            console.log(cookies.data);
 
             if (cookies.data === true) {
                 setTimeout(() => {

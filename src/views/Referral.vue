@@ -1,6 +1,7 @@
 <template>
   <div class="main flex justify-center w-full min-h-screen " ref="main">
-      <div class="body w-4/5  h-full py-5 flex flex-col" v-if="active_nav === false">
+    <Loader v-if="!$store.state.user[0]"/>
+      <div class="body w-4/5  h-full py-5 flex flex-col" v-if="active_nav === false && $store.state.user[0]">
         <Header activeTab="referral" @handleMnav="handleNav"/>
 
         <div class="referral-info gap-x-7 gap-y-7 lg:gap-y-0 w-full h-full justify-center flex flex-col lg:flex-row mt-12">
@@ -43,12 +44,21 @@ import {ref, reactive, computed} from 'vue'
 import { useStore } from 'vuex'
 import copy from 'copy-to-clipboard3';
 import Header from '../components/Header.vue'
+import Loader from '../components/Loader.vue'
 import MobileNav from '../components/MobileNav.vue'
 import axios from 'axios'
 export default {
     components: {
         Header,
+        Loader,
         MobileNav
+    },
+    metaInfo: {
+        title: 'Referral',
+        meta: {
+            name: 'description',
+            content: 'Refer new users and earn now'
+        }
     },
     setup() {
         const url = 'https://humanrabbit.onrender.com/api';

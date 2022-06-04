@@ -5,17 +5,18 @@
               <p class="text-xl font-bold w-full text-left">Withdraw Tron(Trx)</p>
               <svg @click="$emit('closeModal')" class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </div>
+            <p class="text-sm text-left font-bold" v-if="processing == 'Info'">{{withdrawInfo}}</p>
             <input type="text" class="w-full input" placeholder="Enter Tron address(Trc20)" v-model="address">
             <div class="amount row-flex relative w-full h-full items-center">
                 <input type="number" class="w-full h-full" placeholder="Enter amount" v-model="amount">
                 <button class="max absolute right-2 text-white text-center font-bold text-green-rabbit cursor-pointer" @click="amount = $store.state.user[0].wallet">MAX</button>
             </div>
+            <p class="text-sm text-left font-bold" v-if="processing == 'Nothing'">{{withdrawInfo}}</p>
             <p class="text-xl text-left w-full">Available balance: <span class="text-green-rabbit">{{$store.state.user[0].wallet}}TRX</span></p>
             <p class="text-sm  text-left font-medium">Withdraw only to Tron(Trc20) address, failure to do so will result to loss of funds. </p>
-            <p class="text-sm text-left font-bold" v-if="processing == 'Nothing'">{{withdrawInfo}}</p>
           <button class="withdraw-btn bg-green-rabbit w-full grid-center mt-5 text-white" @click="withdrawTrx($store.state.user[0].userDetails._id)">
-            <p class="font-bold text-lg" v-if="processing == false">Withdraw</p>
-            <img src="../assets/img/rolling.gif" v-if="processing == true" class="w-6 h-6" alt="">
+            <p class="font-bold text-lg" v-if="processing == false || processing == 'Info'">Withdraw</p>
+            <img src="../assets/img/rolling.gif" v-if="processing == true" class="w-12 h-12" alt="">
             <p v-if="processing == 'Nothing'" class="font-bold text-lg">Request Sent</p>
           </button>
       </div>
@@ -37,22 +38,38 @@ export default {
       const withdrawInfo = ref('')
 
       const withdrawTrx = async (userId) => {
-          processing.value  = true;
-          const data = reactive({
-              id: userId,
-              address: address.value,
-              amount: amount.value
-          })
-          const response = await axios.post(url + '/blockchain/withdraw', data)
+          if (address.value.length > 1 && amount/value.toString().length >= 1) {
+                processing.value  = true;
+                const data = reactive({
+                    id: userId,
+                    address: address.value,
+                    amount: amount.value
+                })
+                const response = await axios.post(url + '/blockchain/withdraw', data)
 
-          processing.value = false
+                processing.value = false
+                
+                withdrawInfo.value = response.data.message;
+                processing.value  = 'Nothing'
+          } else  {
+              withdrawInfo.value = 'Invalid Trc20 Address & amount';
+              processing.value  = 'Info'
+
+              setTimeout(() => {
+                  processing.value  = false;
+              }, 1200);
+          }
           
-          withdrawInfo.value = response.data.message;
-          processing.value  = 'Nothing'
       }
 
       return {address, amount, withdrawTrx, processing, withdrawInfo}
-  }
+  },
+  metaInfo: {
+      // if no subcomponents specify a metaInfo.title, this title will be used
+      title: 'HumanRabbit',
+      // all titles will be injected into this template
+      titleTemplate: '%s | HumanRabbit'
+    }
 }
 </script>
 
@@ -91,7 +108,7 @@ export default {
     }
 
     @media screen and (max-width: 768px){
-        .deposit {
+        .withdraw {
             width: 90%;
         }
     }

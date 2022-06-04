@@ -3,7 +3,7 @@
         <div class="logo">
             <a href="/"><img src="../assets/img/logo.svg" alt=""></a>
         </div>
-        <button class="mobile-nav lg:hidden block" @click="$emit('handleMnav')"><img src="../assets/img/nav.svg" alt=""></button>
+        <button class="mobile-nav lg:hidden block" @click="$emit('handleMnav')"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg></button>
         <div class="nav gap-x-6 lg:flex flex-row hidden">
             <a href="/dashboard" :class="{'active': activeTab === 'dashboard'} "><p>Games</p></a>
             <a href="/wallet" :class="{'active': activeTab === 'wallet'} "><p>Wallet</p></a>

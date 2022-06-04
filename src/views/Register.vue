@@ -24,6 +24,9 @@ export default {
         'last-step': LastStep
 
     },
+    metaInfo: {
+        title: 'Register',
+    },
     setup () {
         const component = ref('first-step')
 

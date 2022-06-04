@@ -5,10 +5,10 @@
         <input type="text" class="w-full" placeholder="Create username" v-model="secondData.username">
         <input type="text" class="w-full" placeholder="Refferal code (optional)" v-model="secondData.referralCode">
         <p class="text-red-500">{{statusInfo}}</p>
-        <p>By clicking “Next” you agree to <a href="Terms and conditions" class="text-green-400 underline">Terms and conditions</a></p>
+        <p>By clicking “Next” you agree to <a href="/terms" class="text-green-400 underline">Terms and conditions</a></p>
         <button class="next-btn bg-green-rabbit w-full grid-center mt-5"  @click="$emit('last-step', secondData), processing = true, getRegisterDetails()">
             <p class="font-bold text-lg" v-if="processing == false">Next</p>
-            <img src="../../assets/img/rolling.gif" v-else class="w-6 h-6" alt="">
+            <img src="../../assets/img/rolling.gif" v-else class="w-12 h-12">
         </button>
                <p class="text-center flex  self-center sm:flex-row flex-col"><span>Already have an account?</span><a href="/login" class="text-green-400 underline ml-1">Sign in</a></p>
     </div>
@@ -36,7 +36,6 @@ export default {
         })
 
         const getRegisterDetails = () => {
-            console.log("first", details.value);
             setTimeout(() => {
                 if (details.value != undefined) {
                     if (details.value.errorMsg === "OK") {
