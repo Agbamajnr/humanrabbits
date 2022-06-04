@@ -3,10 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import Vue from 'vue'
 import VueMeta from 'vue-meta'
 
-Vue.config.productionTip = false
+
 
 
 createApp(App).use(VueMeta).use(store).use(router).mount('#app')
