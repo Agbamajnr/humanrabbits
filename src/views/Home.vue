@@ -41,7 +41,7 @@
                         <p>Return back</p>
                     </div>
                 </div>
-                <button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Available Now</p></button>
+                <a href="/profile"><button class="availability mt-5 w-full lg:w-56 text-white h-8 border-black"><p>Available Now</p></button></a>
                 <img src="../assets/img/designs/green.svg" class="design-star absolute" alt="">
             </div>
             <div class="card pl-6 pt-5 pb-5 pr-6 lg:pr-2 bg-green-rabbit col-flex items-start gap-y-8 relative">
