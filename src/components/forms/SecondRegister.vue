@@ -19,12 +19,13 @@
 import {ref, reactive, inject, computed} from 'vue'
 import {useRouter, useRoute} from 'vue-router'
 export default {
-    setup() {
+    setup(props, ctx) {
         const secondData = reactive({
             username: '',
             referralCode: '',
         })
         const route = useRoute();
+        const router = useRouter();
 
         const statusInfo = ref('')
 
@@ -42,6 +43,12 @@ export default {
                         processing.value = false;
                     } else {
                         processing.value = false;
+
+                        if (details.value.errorMsg === "EMA") {
+                            setTimeout(() => {
+                                router.push('/register')
+                            }, 2000);
+                        }
                         statusInfo.value = details.value.message;
                     }
                 }

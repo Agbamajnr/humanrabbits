@@ -141,11 +141,6 @@ export default {
             return store.state.user[0]
         })
 
-        setTimeout(() => {
-            if (userDetails.value === undefined) {
-                router.push('/profile')
-            }
-        }, 3000);
 
         provide('navStatus', navStatus)
 

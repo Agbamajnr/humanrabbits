@@ -1,13 +1,13 @@
 <template>
   <div class="form flex flex-col items-start gap-y-7 text-white p-7 lg:bordered border-none">
         <p class="text-xl lg:text-2xl font-semibold ">OTP authentication</p>
-        <p class="text-sm lg:text-lg text-left">Please enter the 5 digit OTP code that was sent to <a href="" class="text-green-400 underline">{{details.email}}</a></p>
+        <p class="text-sm lg:text-lg text-left">Please enter the 5 digit OTP code that was sent to <a href="https://mail.google.com/mail/u/0/" class="text-green-400 underline">{{details.email}}</a>. Check your spam!</p>
         <div id="otp" class="flex flex-row gap-x-3 w-full">
             <input type="text" v-model="val1" @input="next" />
             <input type="text" v-model="val2" @input="next" />
             <input type="text" v-model="val3" @input="next" />
             <input type="text" v-model="val4" @input="next" />
-            <input type="text" v-model="val5" @input="next" />
+            <input type="text" v-model="val5" @input="next" v-if="otpCode.toString().length === 5" />
 
         </div>
         <p class="text-sm lg:text-lg text-left">{{validatedInfo}}</p>
@@ -51,22 +51,45 @@ export default {
         otpCode.value = getOtpCode.data.authCode;
       })
 
-      verifyUser();
+      // verifyUser();
 
-      const validateAuthCode =async () => {
-        const otpInput = [val1.value, val2.value, val3.value, val4.value, val5.value].join('');
-        if (otpInput.length === 5 && otpCode.value.length === 5) {
-          if (otpInput === otpCode.value) {
-            validatedInfo.value = 'User Verified Succesfully';
-            userVerified.value = true;
+      const validateAuthCode = async () => {
+        // check if the otp code length is 5
+        if (otpCode.value.toString().length === 5) {
+          const otpInput = [val1.value, val2.value, val3.value, val4.value, val5.value].join('');
 
-            setTimeout(() => {
-              router.push('/login')
-            }, 2000);
-          } else {
-            validatedInfo.value = 'Incorrect Otp Code';
-          } 
-        } else validatedInfo.value = 'OTP Input not Complete';
+          if (otpInput.length === 5 && otpCode.value.length === 5) {
+            if (otpInput === otpCode.value) {
+              validatedInfo.value = 'User Verified Succesfully';
+              userVerified.value = true;
+
+              setTimeout(() => {
+                router.push('/login')
+              }, 2000);
+            } else {
+              validatedInfo.value = 'Incorrect Otp Code';
+            } 
+          } else validatedInfo.value = 'OTP Input not Complete';
+        }
+
+        // check if the otp code length is 4
+        if (otpCode.value.toString().length === 4) {
+          const otpInput = [val1.value, val2.value, val3.value, val4.value].join('');
+
+          if (otpInput.length === 4 && otpCode.value.length === 4) {
+            if (otpInput === otpCode.value) {
+              validatedInfo.value = 'User Verified Succesfully';
+              userVerified.value = true;
+
+              setTimeout(() => {
+                router.push('/login')
+              }, 2000);
+            } else {
+              validatedInfo.value = 'Incorrect Otp Code';
+            } 
+          } else validatedInfo.value = 'OTP Input not Complete';
+        }
+        
 
         if (userVerified.value === true) {
           const makeUserVerified = await axios.put(url + `/auth/changeUserVerificationState/${details.value._id}`);
@@ -80,7 +103,7 @@ export default {
       }
 
 
-      return {details, next, val1, val2, val3, val4, val5, validateAuthCode, validatedInfo, userVerified }
+      return {details, next, val1, val2, val3, val4, val5, validateAuthCode, validatedInfo, userVerified, otpCode }
     }
 };
 </script>

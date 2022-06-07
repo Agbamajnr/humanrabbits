@@ -8,11 +8,11 @@
             <div class="actions w-full lg:w-2/6 flex flex-col items-center gap-y-4 p-4 lg:p-8">
                 <p>Refferals</p>
                 <p class="text-2xl font-bold text-white">{{$store.state.user[0].userDetails.userReferrals.length}}</p>
-                <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5" @click="copyLink(`http://localhost:8080/join/${$store.state.user[0].userDetails.referralCode}`)">
+                <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5" @click="copyLink(`https://humanrabbits.com/join/${$store.state.user[0].userDetails.referralCode}`)">
                     <p class="font-bold text-lg text-white" v-if="!linkCopied">Copy Link</p>
                     <p class="font-bold text-lg text-white" v-if="linkCopied">Copied</p>
                 </button>
-                <button class="referral-link text-xs overflow-hidden w-full grid-center mt-5 px-1"><p class="font-bold text-lg text-white">http://localhost:8080/join/{{$store.state.user[0].userDetails.referralCode}}</p></button>
+                <button class="referral-link text-xs overflow-hidden w-full grid-center mt-5 px-1"><p class="font-bold text-lg text-white">https://humanrabbits.com/{{$store.state.user[0].userDetails.referralCode}}</p></button>
             </div>
 
 
