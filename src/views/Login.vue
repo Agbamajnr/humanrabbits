@@ -10,7 +10,7 @@
         <p class="w-full text-right"><a href="/forgot-pin" class="text-green-400 no-underline">Forgot password?</a></p>
         <p class="w-full text-left" v-if="loginInformation.length > 1">{{loginInformation}}</p>
         <button class="next-btn bg-green-rabbit w-full grid-center mt-5" @click="validateInput">
-            <p class="font-bold text-lg" v-if="processing === false" type="submit" >Next</p>
+            <p class="font-bold text-lg" v-if="processing === false" >Next</p>
             <img src="../assets/img/rolling.gif" v-if="processing === true"  class="w-12 h-12" alt="">
             <p class="font-bold text-lg text-green-rabbit" v-if="statusInfo === true" type="submit" >Logged In</p>
         </button>

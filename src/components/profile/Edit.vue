@@ -7,17 +7,18 @@
         <p class="stats text-xs">{{$store.state.user[0].userDetails.userGameSessions}} Games, {{$store.state.user[0].currentBalance}} trx</p>
       </div>
       <span class="divider w-full mt-10"></span>
+      <p class="text-red-800 text-xl w-full flexflex-row  self-center">{{errors}}</p>
       <div class="form w-full gap-y-8 col-flex h-full justify-center items-center">
         <input type="text" v-model="validateData.username" placeholder="New Username">
         <input type="number"  placeholder="Old Pin" v-model="validateData.oldPin">
         <input type="number" placeholder="New Pin" v-model="validateData.newPin">
         <button class="save-btn bg-green-rabbit  grid-center mt-5" @click="validateInputAndSend">
           <p class="font-bold text-lg" v-if="processing == false">Save</p>
-          <p class="font-bold text-lg" v-if="processing == 'Nothing'">{{msg}}</p>
+          <p class="font-bold text-lg text-white" v-if="processing == 'Nothing'">{{msg}}</p>
           <img src="../../assets/img/rolling.gif" v-if="processing == true" class="w-12 h-12" alt="">
         </button>
       </div>
-      <p class="text-red-800">{{errors}}</p>
+      
   </div>
 </template>
 
@@ -55,11 +56,12 @@ export default {
 
   // function to validate data and also send as payload to API
     const validateInputAndSend = async () => {
-      processing.value = true
+      
       if (validateData.username.toLowerCase().length > 1) {
         dataToSend.username = validateData.username;
         if (validateData.oldPin.toString().length >= 4) {
           dataToSend.oldPin = validateData.oldPin;
+          processing.value = true
 
           if (validateData.newPin.toString().length >= 4) {
             dataToSend.newPin = validateData.newPin;
@@ -78,6 +80,12 @@ export default {
               errors.value = result.data.message;
             }
           }
+        } else {
+          errors.value = 'Old pin is null'
+
+          setTimeout(() => {
+            ctx.emit('changeComp', "main")
+          }, 2000);
         }
         
       }
