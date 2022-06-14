@@ -1,7 +1,7 @@
 <template>
   <div class="main flex justify-center w-full min-h-screen " ref="main">
-      <Loader v-if="!$store.state.user[0].userDetails.username"/>
-      <div class="body w-4/5  h-full py-5 flex flex-col gap-y-12" v-if="active_nav === false && $store.state.user[0].userDetails.username">
+      <Loader v-if="!$store.state.user[0]"/>
+      <div class="body w-4/5  h-full py-5 flex flex-col gap-y-12" v-if="active_nav === false && $store.state.user[0]">
         <Header activeTab="profile" @handleMnav="handleNav"/>
 
         <div class="profile-cont w-full sm:w-4/5 lg:w-3/5 h-full self-center flex flex-col mt-12 p-7">

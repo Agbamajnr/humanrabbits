@@ -1,5 +1,5 @@
 <template>
-  <div class="header flex flex-row items-center w-full justify-between text-white">
+  <div class="header flex flex-row items-center w-full justify-between text-white" v-if="$store.state.user[0]">
         <div class="logo">
             <a href="/"><img src="../assets/img/logo.svg" alt=""></a>
         </div>

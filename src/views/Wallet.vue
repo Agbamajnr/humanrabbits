@@ -14,7 +14,7 @@
         <div class="wallet-info gap-x-7 gap-y-7 lg:gap-y-0 w-full h-full flex flex-col lg:flex-row mt-12">
             <div class="actions w-full lg:w-2/6 flex flex-col items-center gap-y-4 p-4 lg:p-8">
                 <p>Wallet balance</p>
-                <p class="text-2xl font-bold text-white">{{Math.floor($store.state.user[0].currentBalance)}} TRX</p>
+                <p class="text-2xl font-bold text-white">{{Math.floor($store.state.user[0].wallet)}} TRX</p>
                 <button class="deposit-btn bg-green-rabbit w-full grid-center mt-5" @click="depositFunds"><p class="font-bold text-lg text-white">Deposit</p></button>
                 <button class="withdraw-btn w-full grid-center mt-5" @click="withdrawFunds"><p class="font-bold text-lg text-white">Withdraw</p></button>
             </div>

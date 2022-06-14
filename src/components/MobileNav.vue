@@ -1,5 +1,5 @@
 <template>
-  <div class="overlay lg:hidden w-4/5 h-full py-5 flex flex-col min-h-screen">
+  <div class="overlay lg:hidden w-4/5 h-full py-5 flex flex-col min-h-screen" v-if="$store.state.user[0]">
     <div class="header flex flex-col items-center w-full justify-between text-white">
         <div class="top row-flex justify-between w-full">
             <div class="logo">

@@ -1,7 +1,7 @@
 <template>
   <div class="main flex  justify-center w-full min-h-screen" ref="main">
-      <Loader v-if="!$store.state.user[0]"/>
-      <div class="body w-4/5 h-full py-5 flex flex-col" v-if="active_nav === false && $store.state.user[0]">
+      <Loader v-if="!$store.state.user[0] && userFetchedOnAPI === undefined"/>
+      <div class="body w-4/5 h-full py-5 flex flex-col" v-if="active_nav === false && $store.state.user[0]  || active_nav === false && userFetchedOnAPI !== undefined">
         <Header activeTab="dashboard" @handleMnav="handleNav"/>
 
         <div class="hero mt-16 lg:mt-12  flex flex-col items-center justify-center lg:gap-y-6 text-white">
@@ -108,6 +108,7 @@
 import {ref, reactive, computed, provide} from 'vue'
 import { useStore } from 'vuex'
 import {useRouter} from 'vue-router'
+import axios from 'axios'
 import Loader from '../components/Loader.vue'
 import Header from '../components/Header.vue'
 import MobileNav from '../components/MobileNav.vue'
@@ -130,19 +131,24 @@ export default {
 
         const router = useRouter();
 
-        const navStatus = computed(() => {
-            return active_nav.value
-        })
+        const url = 'https://humanrabbit.onrender.com/api'
+
+        const userFetchedOnAPI = ref()
 
         const store = useStore()
+
+        async function getUser() {
+            let user = await axios.get(url + '/auth/user', {withCredentials: true})
+            userFetchedOnAPI.value = user.data.userDetails;    
+        }
+
+        getUser()
     
 
         let userDetails = computed(() => {
             return store.state.user[0]
         })
 
-
-        provide('navStatus', navStatus)
 
         const handleNav = () => {
             active_nav.value = !active_nav.value;
@@ -155,7 +161,7 @@ export default {
         }
 
 
-        return {main, active_nav, handleNav, navStatus}
+        return {main, active_nav, handleNav, userFetchedOnAPI}
     }
 }
 </script>

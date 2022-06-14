@@ -4,8 +4,8 @@
     <div class="form flex flex-col items-start gap-y-10 text-white p-7 lg:bordered border-none">
         <p class="text-xl lg:text-2xl font-semibold ">Sign-in</p>
         <p class="text-sm lg:text-lg text-left">Sign-in by keying in your email address and 4 digit pin</p>
-        <input type="text" class="w-full" placeholder="Enter email address" v-model="validateData.email" required>
-        <input type="number" class="w-full" placeholder="Enter 4 digit pin" v-model="validateData.pin" maxlength="4" minlength="4" required>
+        <input type="text" class="w-full" placeholder="Enter email address" autocomplete="on" name="email" v-model="validateData.email" required>
+        <input type="number" class="w-full" placeholder="Enter 4 digit pin" autocomplete="on" name="password" v-model="validateData.pin" maxlength="4" minlength="4" required>
         <p class="text-red-700 font-bold" v-if="inputIssues.length > 1">{{inputIssues}}</p>
         <p class="w-full text-right"><a href="/forgot-pin" class="text-green-400 no-underline">Forgot password?</a></p>
         <p class="w-full text-left" v-if="loginInformation.length > 1">{{loginInformation}}</p>
@@ -56,7 +56,7 @@ export default {
 
                 setTimeout(() => {
                     router.push('/profile')
-                }, 3000);
+                }, 500);
             } else statusInfo.value = false;
         }
 

@@ -85,10 +85,7 @@ export default {
             userDetails.value.userReferrals.forEach(async (rf) => {
                 const rfDetails = await axios.get(url + `/auth/referral/${rf}`)
 
-                console.log(rfDetails);
-
                 referrals.value.push(rfDetails.data.referral)
-                console.log(referrals.value);
 
             }) 
         }

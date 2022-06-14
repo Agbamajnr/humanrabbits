@@ -17,7 +17,7 @@ export default {
             if (cookies.data === true) {
                 setTimeout(() => {
                     router.push('/dashboard')
-                }, 4000);
+                }, 500);
             } else router.push('/login')
         })
 
